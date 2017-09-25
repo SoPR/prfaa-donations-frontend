@@ -6,6 +6,8 @@
         "feathers": "^2.2.0",
         "feathers-hooks": "^2.0.2",
         "feathers-socketio": "^2.0.0",
+        "formsy-react": "^1.0.0",
+        "formsy-react-components": "^1.0.0-alpha.5",
         "react": "^15.6.1",
         "react-dom": "^15.6.1",
         "react-scripts": "1.0.13"
