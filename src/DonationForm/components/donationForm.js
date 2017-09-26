@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Formsy from 'formsy-react';
 import InputMask from '../../utils/inputMask.js'
-import Phone from './Phone.js'
 
 import {
   Form,
@@ -63,8 +62,6 @@ export default class DonationForm extends Component {
                 help="First name and last name"
                 placeholder="Full Name"
                 required
-                validations="isAlpha"
-                validationErrors={{isAlpha: "Please use letters only"}}
             />
             <Select
                 name="organizationType"
@@ -80,7 +77,7 @@ export default class DonationForm extends Component {
               help='Please fill if applicable'
               placeholder="Organization Name"
               rowClassName="green"
-              labelClassName={[{'col-sm-3': false}, 'col-sm-5']}
+              labelClassName={[{'col-sm-3': false}, 'col-sm-3']}
               elementWrapperClassName={[{'col-sm-9': false}, 'col-sm-7']}
           />
            <Input
@@ -98,10 +95,10 @@ export default class DonationForm extends Component {
               name="email"
               label="Email"
               help='Please type your email address'
+              type='email'
               placeholder="Email address"
-              required
               validations="isEmail"
-              validationErrors={{isEmail: "Please type your email address"}}
+              required
           />
 
           <Select
