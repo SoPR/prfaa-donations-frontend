@@ -24,7 +24,7 @@ export default class DonationForm extends Component {
   constructor() {
     super()
     this.state = {
-      validationErrors: {}
+      showTranportationOptions: false
     }
     this.phoneMask = new InputMask('(___) ___ - ____', '_')
   }
@@ -77,7 +77,6 @@ export default class DonationForm extends Component {
               validations="isLength:16"
               validationErrors={{isLength: "Please enter complete phone number"}}
               required
-
           />
            <Input
               name="email"
@@ -125,14 +124,17 @@ export default class DonationForm extends Component {
             value='yes'
             required
           />
-          <Select
-            name="transportationType"
-            label="Type of transportation"
-            help='Please be specific'
-            options={Options.transportationTypeOptions}
-            value='land'
-            required
-          />
+          {
+            this.state.showTranportationOptions &&
+            <Select
+              name="transportationType"
+              label="Type of transportation"
+              help='Please be specific'
+              options={Options.transportationTypeOptions}
+              value='land'
+              required
+            />
+          }
           <Textarea
             name="notes"
             label="Additional Notes"
