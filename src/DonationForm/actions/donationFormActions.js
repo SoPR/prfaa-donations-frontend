@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const submitFormRequest = (data) => {
-  axios.post('/endpoint', data)
-  .then(function (response) {
+    axios.post('/endpoint', data)
+    .then(function (response) {
     console.log(response);
     // Redirect user
   })
-  .catch(function (error) {
+    .catch(function (error) {
     console.log(error);
     // display form error
   });

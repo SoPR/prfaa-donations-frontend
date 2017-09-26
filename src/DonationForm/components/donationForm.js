@@ -44,6 +44,8 @@ export default class DonationForm extends Component {
 
   render() {
     return (
+        <div className="form-container">
+          <div className="text-header"> Donation Form </div>
         <Formsy.Form onChange={this.validateForm} onValidSubmit={this.handleValidSubmission} onValid={this.isValid} onInvalidSubmit={this.invalidSubmit}>
            <Input
                 name="fullname"
@@ -51,6 +53,9 @@ export default class DonationForm extends Component {
                 help="First name and last name"
                 placeholder="Full Name"
                 required
+                rowClassName="addMargin"
+                labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+                elementWrapperClassName={[{'col-sm-9': false}, 'col-md-5']}
             />
             <Select
                 name="organizationType"
@@ -59,15 +64,18 @@ export default class DonationForm extends Component {
                 value='individual'
                 options={Options.organizationTypeOptions}
                 required
+                rowClassName="addMargin"
+                labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+                elementWrapperClassName={[{'col-sm-9': false}, 'col-md-5']}
             />
            <Input
               name="organizationName"
               label="Name of Organization"
               help='Please fill if applicable'
               placeholder="Organization Name"
-              rowClassName="green"
-              labelClassName={[{'col-sm-3': false}, 'col-sm-3']}
-              elementWrapperClassName={[{'col-sm-9': false}, 'col-sm-7']}
+              rowClassName="addMargin"
+              labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+              elementWrapperClassName={[{'col-sm-9': false}, 'col-md-5']}
           />
            <Input
               name="phoneNumber"
@@ -79,6 +87,9 @@ export default class DonationForm extends Component {
               validations="isLength:16"
               validationErrors={{isLength: "Please enter complete phone number"}}
               required
+              rowClassName="addMargin"
+              labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+              elementWrapperClassName={[{'col-sm-9': false}, 'col-md-2']}
           />
            <Input
               name="email"
@@ -88,6 +99,9 @@ export default class DonationForm extends Component {
               placeholder="Email address"
               validations="isEmail"
               required
+              rowClassName="addMargin"
+              labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+              elementWrapperClassName={[{'col-sm-9': false}, 'col-md-5']}
           />
 
           <Select
@@ -96,12 +110,18 @@ export default class DonationForm extends Component {
             options={Options.donationCategoriesOptions}
             value='energy'
             required
+            rowClassName="addMargin"
+            labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+            elementWrapperClassName={[{'col-sm-9': false}, 'col-md-5']}
           />
           <Textarea
             name="detailedDescription"
             label="Detailed Description"
             help='Please be precise. Example: "Water bottles", "1 Empty Container", "20 Satellite radios", etc.'
             placeholder="1000 water batttles, 10 Filled Containers, ect.."
+            rowClassName="addMargin"
+            labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+            elementWrapperClassName={[{'col-sm-9': false}, 'col-md-5']}
           />
           <Input
             name="locationOfDonation"
@@ -109,6 +129,9 @@ export default class DonationForm extends Component {
             help='Example: "1 South Drive, Orlando, FL"'
             placeholder="Please write adress of Goods"
             required
+            rowClassName="addMargin"
+            labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+            elementWrapperClassName={[{'col-sm-9': false}, 'col-md-5']}
           />
           <Input
             name="zipCode"
@@ -118,6 +141,9 @@ export default class DonationForm extends Component {
             required
             validations="isNumeric"
             validationErrors={{isNumeric: "Please use numbers only"}}
+            rowClassName="addMargin"
+            labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+            elementWrapperClassName={[{'col-sm-9': false}, 'col-md-2']}
           />
           <Select
             name="transportationNeed"
@@ -126,6 +152,9 @@ export default class DonationForm extends Component {
             value='no'
             onChange={this.transportationNeededChanged}
             required
+            rowClassName="addMargin"
+            labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+            elementWrapperClassName={[{'col-sm-9': false}, 'col-md-5']}
           />
           {
             this.state.showTranportationOptions ?
@@ -136,11 +165,17 @@ export default class DonationForm extends Component {
               options={Options.transportationTypeOptions}
               value='land'
               required
+              rowClassName="addMargin"
+              labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+              elementWrapperClassName={[{'col-sm-9': false}, 'col-md-5']}
             /> :
             <Select
               name="transportationType"
               value=''
               style={{display: 'none'}}
+              rowClassName="addMargin"
+              labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+              elementWrapperClassName={[{'col-sm-9': false}, 'col-md-5']}
             />
           }
           <Textarea
@@ -148,15 +183,22 @@ export default class DonationForm extends Component {
             label="Additional Notes"
             help='Additional notes, comments, needs, etc'
             placeholder="Notes, comments, needs, ect.. "
+            rowClassName="addMargin"
+            labelClassName={[{'col-sm-3': false}, 'col-md-2']}
+            elementWrapperClassName={[{'col-sm-9': false}, 'col-md-5']}
           />
 
           <div className='has-error'>
             {this.state.invalidSubmit && <span className='help-block validation-message'>Please fix the errors above</span> }
           </div>
 
-          <button type="submit" className="btn-default">Submit</button>
-
+          <div className="form-group">
+           <div className="col-xs-12 center col-md-5">
+          <button type="submit" className="btn btn-success">Submit</button>
+          </div>
+          </div>
         </Formsy.Form>
+        </div>
     );
   }
 }
