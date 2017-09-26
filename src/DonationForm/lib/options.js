@@ -5,8 +5,8 @@ const organizationTypeOptions = [
 ]
 
 const needsTransportationOptions = [
-  {value: 'yes', label: 'Yes'},
-  {value: 'no', label: 'No'}
+  {value: 'no', label: 'No'},
+  {value: 'yes', label: 'Yes'}
 ]
 
 const donationCategoriesOptions = [

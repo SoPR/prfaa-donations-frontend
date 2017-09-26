@@ -24,9 +24,14 @@ export default class DonationForm extends Component {
   constructor() {
     super()
     this.state = {
-      showTranportationOptions: false
+      showTranportationOptions: false,
+      invalidSubmit: false
     }
     this.phoneMask = new InputMask('(___) ___ - ____', '_')
+    this.invalidSubmit = this.invalidSubmit.bind(this)
+    this.isValid = this.isValid.bind(this)
+    this.transportationNeededChanged = this.transportationNeededChanged.bind(this)
+
   }
 
   handleSubmission(data) {
@@ -35,15 +40,23 @@ export default class DonationForm extends Component {
     console.log(data)
   }
 
-  invalidSubmit(data, error) {
-    debugger
-    alert("INVALID SUBMISSION!!!!!!!!!")
-    alert(JSON.stringify(data))
+  invalidSubmit() {
+    console.log('invalid')
+    this.setState({invalidSubmit: true})
+  }
+
+  isValid() {
+    console.log('valid')
+    this.setState({invalidSubmit: false})
+  }
+
+  transportationNeededChanged() {
+    this.setState({showTranportationOptions: !this.state.showTranportationOptions})
   }
 
   render() {
     return (
-        <Formsy.Form onChange={this.validateForm} onValidSubmit={this.handleSubmission} onValid={this.enableButton} onInvalidSubmit={this.invalidSubmit}>
+        <Formsy.Form onChange={this.validateForm} onValidSubmit={this.handleSubmission} onValid={this.isValid} onInvalidSubmit={this.invalidSubmit}>
            <Input
                 name="firstname"
                 label="Full Name"
@@ -121,11 +134,12 @@ export default class DonationForm extends Component {
             name="transportationNeed"
             label="Do you need transportation of goods?"
             options={Options.needsTransportationOptions}
-            value='yes'
+            value='no'
+            onChange={this.transportationNeededChanged}
             required
           />
           {
-            this.state.showTranportationOptions &&
+            this.state.showTranportationOptions ?
             <Select
               name="transportationType"
               label="Type of transportation"
@@ -133,6 +147,11 @@ export default class DonationForm extends Component {
               options={Options.transportationTypeOptions}
               value='land'
               required
+            /> :
+            <Select
+              name="transportationType"
+              value=''
+              style={{display: 'none'}}
             />
           }
           <Textarea
@@ -141,7 +160,10 @@ export default class DonationForm extends Component {
             help='Additional notes, comments, needs, etc'
             placeholder="Notes, comments, needs, ect.. "
           />
-          <button type="submit" >Submit</button>
+          <div>
+            {this.state.invalidSubmit && <span class='help-block validation-message'>Please fix the errors above</span> }
+          </div>
+          <button type="submit">Submit</button>
         </Formsy.Form>
     );
   }
