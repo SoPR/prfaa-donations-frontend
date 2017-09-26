@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Formsy from 'formsy-react';
 import InputMask from '../../utils/inputMask.js'
+import donationFormActions from '../actions/donationFormActions.js'
 
 import {
   Form,
@@ -10,13 +11,6 @@ import {
 } from 'formsy-react-components';
 
 import Options from '../lib/options.js'
-
-const wrappedHandler = (handler) => {
-      return (event) => {
-        handler(event)
-        this.setValue(event.currentTarget['value'])
-      }
-    }
 
 export default class DonationForm extends Component {
 
@@ -33,21 +27,16 @@ export default class DonationForm extends Component {
 
   }
 
-  handleSubmission(data) {
+  handleValidSubmission(data) {
     data.phoneNumber = data.phoneNumber.match(/\d+/g).join('')
     alert(JSON.stringify(data));
     console.log(data)
+    donationFormActions.submitFormRequest(data)
   }
 
-  invalidSubmit() {
-    console.log('invalid')
-    this.setState({invalidSubmit: true})
-  }
+  invalidSubmit() { this.setState({invalidSubmit: true}) }
 
-  isValid() {
-    console.log('valid')
-    this.setState({invalidSubmit: false})
-  }
+  isValid() { this.setState({invalidSubmit: false}) }
 
   transportationNeededChanged() {
     this.setState({showTranportationOptions: !this.state.showTranportationOptions})
@@ -55,7 +44,7 @@ export default class DonationForm extends Component {
 
   render() {
     return (
-        <Formsy.Form onChange={this.validateForm} onValidSubmit={this.handleSubmission} onValid={this.isValid} onInvalidSubmit={this.invalidSubmit}>
+        <Formsy.Form onChange={this.validateForm} onValidSubmit={this.handleValidSubmission} onValid={this.isValid} onInvalidSubmit={this.invalidSubmit}>
            <Input
                 name="fullname"
                 label="Full Name"
@@ -161,8 +150,8 @@ export default class DonationForm extends Component {
             placeholder="Notes, comments, needs, ect.. "
           />
 
-          <div>
-            {this.state.invalidSubmit && <span class='help-block validation-message'>Please fix the errors above</span> }
+          <div className='has-error'>
+            {this.state.invalidSubmit && <span className='help-block validation-message'>Please fix the errors above</span> }
           </div>
 
           <button type="submit" className="btn-default">Submit</button>
