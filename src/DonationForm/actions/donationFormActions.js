@@ -9,13 +9,13 @@ const submitFormRequest = (data) => {
         .then((res) => {
             document.dispatchEvent(donationSubmitted)
             // Redirect user to Thank You
-        })
+  })
         .catch((error) => {
             document.dispatchEvent(submissionError)
-            // display form error
-        });
+    // display form error
+  });
 }
 
 export default {
-    submitFormRequest
+  submitFormRequest
 }
