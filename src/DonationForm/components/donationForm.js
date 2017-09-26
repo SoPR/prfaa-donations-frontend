@@ -79,6 +79,9 @@ export default class DonationForm extends Component {
               label="Name of Organization"
               help='Please fill if applicable'
               placeholder="Organization Name"
+              rowClassName="green"
+              labelClassName={[{'col-sm-3': false}, 'col-sm-5']}
+              elementWrapperClassName={[{'col-sm-9': false}, 'col-sm-7']}
           />
            <Input
               name="phoneNumber"
@@ -160,10 +163,13 @@ export default class DonationForm extends Component {
             help='Additional notes, comments, needs, etc'
             placeholder="Notes, comments, needs, ect.. "
           />
+
           <div>
             {this.state.invalidSubmit && <span class='help-block validation-message'>Please fix the errors above</span> }
           </div>
-          <button type="submit">Submit</button>
+
+          <button type="submit" className="btn-default">Submit</button>
+
         </Formsy.Form>
     );
   }
