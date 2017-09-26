@@ -58,7 +58,7 @@ export default class DonationForm extends Component {
     return (
         <Formsy.Form onChange={this.validateForm} onValidSubmit={this.handleSubmission} onValid={this.isValid} onInvalidSubmit={this.invalidSubmit}>
            <Input
-                name="firstname"
+                name="fullname"
                 label="Full Name"
                 help="First name and last name"
                 placeholder="Full Name"
