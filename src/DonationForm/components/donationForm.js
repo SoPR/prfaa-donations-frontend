@@ -79,9 +79,7 @@ export default class DonationForm extends Component {
               label="Name of Organization"
               help='Please fill if applicable'
               placeholder="Organization Name"
-              rowClassName="green"
-              labelClassName={[{'col-sm-3': false}, 'col-sm-5']}
-              elementWrapperClassName={[{'col-sm-9': false}, 'col-sm-7']}
+
           />
            <Input
               name="phoneNumber"
