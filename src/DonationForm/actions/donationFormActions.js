@@ -1,13 +1,16 @@
 import axios from 'axios';
 
+const donationSubmitted = new Event('donationSubmitted');
+const submissionError = new Event('submissionError');
+
 const submitFormRequest = (data) => {
-    axios.post('/endpoint', data)
+    axios.post('http://donationbackendlb-1bjc8td-1643657227.us-east-1.elb.amazonaws.com/donation-offer', data)
     .then(function (response) {
-    console.log(response);
-    // Redirect user
+    document.dispatchEvent(donationSubmitted)
+    // Redirect user to Thank You
   })
     .catch(function (error) {
-    console.log(error);
+    document.dispatchEvent(submissionError)
     // display form error
   });
 }

@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+Uses Formsy and Formsy components
+
+https://github.com/christianalfoni/formsy-react/
+https://github.com/twisty/formsy-react-components/tree/master/docs
+
 MIT License
 Copyright (c) 2017 Startups of Puerto Rico
 

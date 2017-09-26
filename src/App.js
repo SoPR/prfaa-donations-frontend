@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+
+import LandingPage from './LandingPage/components/landingPage.js'
+import DonationForm from './DonationForm/components/donationForm.js'
+import ThankYou from './ThankYou/components/thankYou.js'
+
 import './App.css';
 import './styles/bootstrap.min.css';
 import './styles/donationForm.css';
 
-import DonationForm from './DonationForm/components/donationForm.js'
 
 class App extends Component {
     render() {
         return (
-            <DonationForm/>
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/donation-form" component={DonationForm} />
+            <Route exact path="/donation-form/thank-you" component={ThankYou} />
+          </Switch>
         );
     }
 }
