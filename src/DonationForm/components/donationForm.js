@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Formsy from 'formsy-react';
+import InputMask from '../../utils/inputMask.js'
+import Phone from './Phone.js'
+
 import {
   Form,
   Input,
@@ -9,15 +12,38 @@ import {
 
 import Options from '../lib/options.js'
 
+const wrappedHandler = (handler) => {
+      return (event) => {
+        handler(event)
+        this.setValue(event.currentTarget['value'])
+      }
+    }
+
 export default class DonationForm extends Component {
 
-submit(data) {
-  alert(JSON.stringify(data));
-}
+  constructor() {
+    super()
+    this.state = {
+      validationErrors: {}
+    }
+    this.phoneMask = new InputMask('(___) ___ - ____', '_')
+  }
+
+  handleSubmission(data) {
+    data.phoneNumber = data.phoneNumber.match(/\d+/g).join('')
+    alert(JSON.stringify(data));
+    console.log(data)
+  }
+
+  invalidSubmit(data, error) {
+    debugger
+    alert("INVALID SUBMISSION!!!!!!!!!")
+    alert(JSON.stringify(data))
+  }
 
   render() {
     return (
-        <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
+        <Formsy.Form onChange={this.validateForm} onValidSubmit={this.handleSubmission} onValid={this.enableButton} onInvalidSubmit={this.invalidSubmit}>
            <Input
                 name="firstname"
                 label="Full Name"
@@ -31,6 +57,7 @@ submit(data) {
                 name="organizationType"
                 label="Organization Type"
                 help='Please select the category that applies'
+                value='individual'
                 options={Options.organizationTypeOptions}
                 required
             />
@@ -43,11 +70,13 @@ submit(data) {
            <Input
               name="phoneNumber"
               label="Phone Number"
-              help='Please type your phone number using this format (XXX) - XXX - XXXX'
-              placeholder="Phone Number"
+              help='Please type your phone number'
+              placeholder="(XXX) - XXX - XXXX"
+              onKeyDown={this.phoneMask.keyDownHandler}
+		          onKeyUp={this.phoneMask.keyUpHandler}
+              validations="isLength:16"
+              validationErrors={{isLength: "Please enter complete phone number"}}
               required
-              validations="isNumeric"
-              validationErrors={{isNumeric: "Please use numbers only"}}
 
           />
            <Input
@@ -64,6 +93,7 @@ submit(data) {
             name="donationCategories"
             label="Categories of Donation"
             options={Options.donationCategoriesOptions}
+            value='energy'
             required
           />
           <Textarea
@@ -92,6 +122,7 @@ submit(data) {
             name="transportationNeed"
             label="Do you need transportation of goods?"
             options={Options.needsTransportationOptions}
+            value='yes'
             required
           />
           <Select
@@ -99,6 +130,7 @@ submit(data) {
             label="Type of transportation"
             help='Please be specific'
             options={Options.transportationTypeOptions}
+            value='land'
             required
           />
           <Textarea
