@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import client from './Feathers';
 import './App.css';
+import './styles/bootstrap.min.css';
+
+import DonationForm from './DonationForm/components/donationForm.js'
 
 class App extends Component {
     constructor(props) {
@@ -38,21 +41,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <div className="field">
-                    <label className="label" htmlFor="email">Your Email</label>
-                    <input id="email" className="input" type="text" placeholder="you@example.com"
-                           value={this.state.email} onChange={this.handleInputChange} />
-                </div>
-
-                <div className="field">
-                    <label className="label" htmlFor="donation">Donation</label>
-                    <input id="offer" className="input" type="text"
-                           value={this.state.offer} onChange={this.handleInputChange} />
-                </div>
-
-                <button onClick={this.handleSubmit}>Save</button>
-            </div>
+            <DonationForm/>
         );
     }
 }
