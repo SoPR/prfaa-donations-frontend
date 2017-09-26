@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import client from './Feathers';
 import './App.css';
-import 'react-bootstrap';
 
 import DonationForm from './DonationForm/components/donationForm.js'
 
