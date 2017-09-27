@@ -22,6 +22,7 @@ export default class DonationForm extends Component {
       submissionErrors: []
     }
     this.phoneMask = new InputMask('(___) ___ - ____', '_')
+    this.zipCodeMask = new InputMask('_____', '_')    
     this.invalidSubmit = this.invalidSubmit.bind(this)
     this.isValid = this.isValid.bind(this)
     this.transportationNeededChanged = this.transportationNeededChanged.bind(this)
@@ -51,6 +52,7 @@ export default class DonationForm extends Component {
 
   handleValidSubmission(data) {
     data.phoneNumber = data.phoneNumber.match(/\d+/g).join('')
+    data.zipCode = data.zipCode.match(/\d+/g).join('')    
     alert(JSON.stringify(data));
     console.log(data)
     donationFormActions.submitFormRequest(data)
@@ -167,8 +169,12 @@ export default class DonationForm extends Component {
           <Input
             name="zipCode"
             label="Zip Code of the donation location entered above"
-            help="Example: 11222"
-            placeholder="Zip Code"
+            help="Example: 00959"
+            placeholder="XXXXX"
+            onKeyDown={this.zipCodeMask.keyDownHandler}
+            onKeyUp={this.zipCodeMask.keyUpHandler}
+            validations="isLength:5"
+            validationErrors={{isLength: "Please a 5 digit Zip Code"}}
             required
             validations="isNumeric"
             validationErrors={{isNumeric: "Please use numbers only"}}
