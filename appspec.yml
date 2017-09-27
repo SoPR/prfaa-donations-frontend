@@ -1,0 +1,25 @@
+version: 0.0
+os: linux
+files:
+  - source: /build
+    destination: /opt/www/prfaa-donations-frontend
+  - source: /config/nginx.conf
+    destination: /etc/nginx
+permissions:
+  - object: /opt/www/prfaa-donations-frontend
+    pattern: "**"
+    owner: nginx
+    group: nginx
+  - object: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: 644
+hooks:
+  ApplicationStop:
+    - location: scripts/stop-app.sh
+  BeforeInstall:
+    - location: scripts/install-app.sh
+  ApplicationStart:
+    - location: scripts/start-app.sh
+  ValidateService:
+    - location: scripts/monitor-app.sh
