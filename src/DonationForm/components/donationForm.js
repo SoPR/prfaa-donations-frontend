@@ -18,13 +18,35 @@ export default class DonationForm extends Component {
     super()
     this.state = {
       showTranportationOptions: false,
-      invalidSubmit: false
+      invalidSubmit: false,
+      submissionErrors: []
     }
     this.phoneMask = new InputMask('(___) ___ - ____', '_')
     this.invalidSubmit = this.invalidSubmit.bind(this)
     this.isValid = this.isValid.bind(this)
     this.transportationNeededChanged = this.transportationNeededChanged.bind(this)
+    this.successfulSubmission = this.successfulSubmission.bind(this)
+    this.submissionError = this.submissionError.bind(this)
+  }
 
+  componentDidMount() {
+    document.addEventListener('donationSubmitted', this.successfulSubmission)
+    document.addEventListener('submissionError', this.submissionError)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('donationSubmitted', this.successfulSubmission)
+    document.removeEventListener('submissionError', this.submissionError)
+  }
+
+  successfulSubmission() {
+    this.props.history.push('/donation-form/thank-you')
+  }
+
+  submissionError() {
+    let errorArray = this.state.submissionErrors
+    errorArray.push('There was an error processing your request.')
+    this.setState({submissionErrors: errorArray})
   }
 
   handleValidSubmission(data) {
@@ -34,9 +56,18 @@ export default class DonationForm extends Component {
     donationFormActions.submitFormRequest(data)
   }
 
-  invalidSubmit() { this.setState({invalidSubmit: true}) }
+  invalidSubmit() {
+    let errorArray = this.state.submissionErrors
+    errorArray.push('Please fix the errors above.')
+    this.setState({submissionErrors: errorArray})
+  }
 
-  isValid() { this.setState({invalidSubmit: false}) }
+  isValid() {
+    let errorArray = this.state.submissionErrors
+    let errorIndex = this.state.submissionErrors.indexOf('Please fix the errors above.')
+    errorArray.splice(errorIndex, 1)
+    this.setState({submissionErrors: errorArray})
+  }
 
   transportationNeededChanged() {
     this.setState({showTranportationOptions: !this.state.showTranportationOptions})
@@ -189,7 +220,7 @@ export default class DonationForm extends Component {
           />
 
           <div className='has-error'>
-            {this.state.invalidSubmit && <span className='help-block validation-message'>Please fix the errors above</span> }
+            {this.state.submissionErrors.length > 0 && <span className='help-block validation-message'>{this.state.submissionErrors.join('\/n')}</span> }
           </div>
 
           <div className="form-group">

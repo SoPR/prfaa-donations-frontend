@@ -24,7 +24,7 @@ const donationCategoriesOptions = [
       {value: 'land', label: 'Land transporation'},
       {value: 'air', label: 'Air Cargo'},
       {value: 'maritime', label: 'Maritime Transportation'},
-      {value: 'other', label: 'Other - please explain in the comment section (at end)'},
+      {value: 'other', label: 'Other - please explain in the notes section below'},
     ];
 
 

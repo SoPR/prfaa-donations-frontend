@@ -1,13 +1,16 @@
 import axios from 'axios';
 
+const donationSubmitted = new Event('donationSubmitted');
+const submissionError = new Event('submissionError');
+
 const submitFormRequest = (data) => {
-    axios.post('/endpoint', data)
+    axios.post(process.env.REACT_APP_BACKEND_URL, data)
     .then(function (response) {
-    console.log(response);
-    // Redirect user
+    document.dispatchEvent(donationSubmitted)
+    // Redirect user to Thank You
   })
     .catch(function (error) {
-    console.log(error);
+    document.dispatchEvent(submissionError)
     // display form error
   });
 }
