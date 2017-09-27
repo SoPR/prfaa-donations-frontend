@@ -28,40 +28,40 @@ export default class DonationForm extends Component {
     super()
     this.state = {
       showTranportationOptions: false,
-            invalidSubmit:            false,
+      invalidSubmit: false,
             submissionErrors:         [],
             expDate:                  null
     }
     this.phoneMask = new InputMask('(___) ___ - ____', '_')
-        this.zipCodeMask                 = new InputMask('_____', '_')
+    this.zipCodeMask = new InputMask('_____', '_')    
     this.invalidSubmit = this.invalidSubmit.bind(this)
     this.isValid = this.isValid.bind(this)
     this.transportationNeededChanged = this.transportationNeededChanged.bind(this)
-        this.successfulSubmission        = this.successfulSubmission.bind(this)
-        this.submissionError             = this.submissionError.bind(this)
+    this.successfulSubmission = this.successfulSubmission.bind(this)
+    this.submissionError = this.submissionError.bind(this)
         this.handleValidSubmission       = this.handleValidSubmission.bind(this)
         this.handleExpirationDateChange  = this.handleExpirationDateChange.bind(this)
-    }
-
-    componentDidMount() {
-        document.addEventListener('donationSubmitted', this.successfulSubmission)
-        document.addEventListener('submissionError', this.submissionError)
   }
 
-    componentWillUnmount() {
-        document.removeEventListener('donationSubmitted', this.successfulSubmission)
-        document.removeEventListener('submissionError', this.submissionError)
-    }
+  componentDidMount() {
+    document.addEventListener('donationSubmitted', this.successfulSubmission)
+    document.addEventListener('submissionError', this.submissionError)
+  }
 
-    successfulSubmission() {
-        this.props.history.push('/donation-form/thank-you')
-    }
+  componentWillUnmount() {
+    document.removeEventListener('donationSubmitted', this.successfulSubmission)
+    document.removeEventListener('submissionError', this.submissionError)
+  }
 
-    submissionError() {
-        let errorArray = this.state.submissionErrors
-        errorArray.push('There was an error processing your request.')
-        this.setState({submissionErrors: errorArray})
-    }
+  successfulSubmission() {
+    this.props.history.push('/donation-form/thank-you')
+  }
+
+  submissionError() {
+    let errorArray = this.state.submissionErrors
+    errorArray.push('There was an error processing your request.')
+    this.setState({submissionErrors: errorArray})
+  }
 
   handleValidSubmission(data) {
     data.phoneNumber = data.phoneNumber.match(/\d+/g).join('')
@@ -76,18 +76,18 @@ export default class DonationForm extends Component {
     donationFormActions.submitFormRequest(data)
   }
 
-    invalidSubmit() {
-        let errorArray = this.state.submissionErrors
-        errorArray.push('Please fix the errors above.')
-        this.setState({submissionErrors: errorArray})
-    }
+  invalidSubmit() {
+    let errorArray = this.state.submissionErrors
+    errorArray.push('Please fix the errors above.')
+    this.setState({submissionErrors: errorArray})
+  }
 
-    isValid() {
-        let errorArray = this.state.submissionErrors
-        let errorIndex = this.state.submissionErrors.indexOf('Please fix the errors above.')
-        errorArray.splice(errorIndex, 1)
-        this.setState({submissionErrors: errorArray})
-    }
+  isValid() {
+    let errorArray = this.state.submissionErrors
+    let errorIndex = this.state.submissionErrors.indexOf('Please fix the errors above.')
+    errorArray.splice(errorIndex, 1)
+    this.setState({submissionErrors: errorArray})
+  }
 
   transportationNeededChanged() {
     this.setState({showTranportationOptions: !this.state.showTranportationOptions})
