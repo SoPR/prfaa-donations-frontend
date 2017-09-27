@@ -2,11 +2,6 @@
  margin: 20px 30px;
 }
 
-.center {
-  text-align: center;
-  text-align: -webkit-center;
-}
-
 .form-control-feedback {
   top:  0px;
   right: 15px;
