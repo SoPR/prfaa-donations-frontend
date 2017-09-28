@@ -10,7 +10,7 @@ export default class ThankYou extends Component {
 
   render() {
     return(
-      <Navbar>
+      <Navbar staticTop>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to='/'>Home</Link>
