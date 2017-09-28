@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import InputMask from '../../utils/inputMask.js'
 import donationFormActions from '../actions/donationFormActions.js'
-
+import InputMask from '../../utils/inputMask.js'
+import Options from '../lib/options.js'
 import {
     Form,
     Input,
@@ -9,7 +9,8 @@ import {
     Textarea
 } from 'formsy-react-components';
 
-import Options from '../lib/options.js'
+import '../style/donationForm.css';
+
 
 export default class DonationForm extends Component {
 
@@ -160,7 +161,7 @@ export default class DonationForm extends Component {
                         name="locationOfDonation"
                         label="Location of the Goods/Service to be Donated"
                         help='Example: "1 South Drive, Orlando, FL"'
-                        placeholder="Please write adress of Goods"
+                        placeholder="Please write the address of the goods"
                         required
                         rowClassName="addMargin"
                         labelClassName={[{'col-sm-3': false}, 'col-md-2 col-md-offset-2']}
