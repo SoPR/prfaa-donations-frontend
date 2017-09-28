@@ -23,6 +23,9 @@ export default class ThankYou extends Component {
           <li role="presentation">
             <Link eventKey={2} to='/donation-form/thank-you'>Thank You page link</Link>
           </li>
+            <li role="presentation">
+                <Link eventKey={3} to='/search'>Search page link</Link>
+            </li>
         </Nav>
         </Navbar.Collapse>
       </Navbar>
