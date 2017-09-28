@@ -18,15 +18,12 @@ export default class ThankYou extends Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-        <Nav>
-          <NavItem>
-            <Link eventKey={1} to="/donation-form">Donation form link</Link>
-          </NavItem>
-          <NavItem>
-            <Link eventKey={2} to="/donation-form/thank-you">Thank You page link</Link>
-          </NavItem>
-        </Nav>
+          <Nav>
+            <NavItem eventKey={1} href="/donation-form">Donation form link</NavItem>
+            <NavItem eventKey={2} href="/donation-form/thank-you">Thank You page link</NavItem>
+          </Nav>
         </Navbar.Collapse>
+
       </Navbar>
     )
   }
