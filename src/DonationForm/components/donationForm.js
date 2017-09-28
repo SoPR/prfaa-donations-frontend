@@ -147,7 +147,7 @@ export default class DonationForm extends Component {
                             />
 
                             <Select
-                                name="donationCategories"
+                                name="donationCategory"
                                 label="Categories of Donation"
                                 options={Options.donationCategoriesOptions}
                                 value='energy'
@@ -203,7 +203,7 @@ export default class DonationForm extends Component {
                                 name="transportationNeed"
                                 label="Do you need transportation of goods?"
                                 options={Options.needsTransportationOptions}
-                                value='no'
+                                value={false}
                                 onChange={this.transportationNeededChanged}
                                 required
                                 rowClassName="addMargin"

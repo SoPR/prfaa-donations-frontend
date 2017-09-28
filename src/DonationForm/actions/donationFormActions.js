@@ -4,7 +4,7 @@ const donationSubmitted = new Event('donationSubmitted');
 const submissionError = new Event('submissionError');
 
 const submitFormRequest = (data) => {
-    axios.post(process.env.REACT_APP_BACKEND_URL, data)
+    axios.post(process.env.REACT_APP_BACKEND_URL + '/donation-offer/', data)
     .then(function (response) {
     document.dispatchEvent(donationSubmitted)
     // Redirect user to Thank You
