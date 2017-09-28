@@ -1,21 +1,21 @@
-import axios from 'axios';
+import client from '../../Feathers';
 
 const donationSubmitted = new Event('donationSubmitted');
-const submissionError = new Event('submissionError');
+const submissionError   = new Event('submissionError');
 
 const submitFormRequest = (data) => {
-    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://donationbackendlb-1bjc8td-1643657227.us-east-1.elb.amazonaws.com';
-    axios.post(backendUrl + '/donation-offer/', data)
-    .then(function (response) {
-    document.dispatchEvent(donationSubmitted)
-    // Redirect user to Thank You
-  })
-    .catch(function (error) {
-    document.dispatchEvent(submissionError)
-    // display form error
-  });
+    const donationOfferService = client.service('donation-offer');
+    donationOfferService.create(data)
+        .then((res) => {
+            document.dispatchEvent(donationSubmitted)
+            // Redirect user to Thank You
+        })
+        .catch((error) => {
+            document.dispatchEvent(submissionError)
+            // display form error
+        });
 }
 
 export default {
-  submitFormRequest
+    submitFormRequest
 }

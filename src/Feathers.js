@@ -1,13 +1,24 @@
-import io from 'socket.io-client';
 import feathers from 'feathers/client';
 import hooks from 'feathers-hooks';
-import socketio from 'feathers-socketio/client';
 
-const serverAddy = process.env.REACT_APP_BACKEND_URL || 'http://donationbackendlb-1bjc8td-1643657227.us-east-1.elb.amazonaws.com';
-const socket     = io(serverAddy);
-const client     = feathers();
+//import io from 'socket.io-client';
+import agent from 'superagent';
 
-client.configure(hooks());
-client.configure(socketio(socket, {timeout: 5000}));
+//import socketio from 'feathers-socketio/client';
+import rest from 'feathers-rest/client';
+
+import config from './config';
+
+const serverAddy = config.backendUrl;
+const restful    = rest(serverAddy);
+//const socket     = io(serverAddy);
+
+//const client = feathers()
+//    .configure(hooks())
+//    .configure(socketio(socket, {timeout: 5000}));
+
+const client = feathers()
+    .configure(hooks())
+    .configure(restful.superagent(agent));
 
 export default client;
