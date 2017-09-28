@@ -28,8 +28,9 @@ export default class ThankYou extends Component {
             <li role="presentation">
                 <Link eventKey={3} to='/search'>Search page link</Link>
             </li>
-        </Nav>
+          </Nav>
         </Navbar.Collapse>
+
       </Navbar>
     )
   }
