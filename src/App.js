@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Header from './Layout/components/header.js'
+import Layout from './Layout/layout.js'
 import Footer from './Layout/components/footer.js'
 
 import LandingPage from './LandingPage/components/landingPage.js'
@@ -15,15 +15,13 @@ import './App.css';
 class App extends Component {
     render() {
         return (
-          <div>
-            <Header/>
-              <Switch>
-                <Route exact path="/" component={LandingPage} />
-                <Route exact path="/donation-form" component={DonationForm} />
-                <Route exact path="/donation-form/thank-you" component={ThankYou} />
-              </Switch>
-            <Footer/>
-          </div>
+          <Layout>
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/donation-form" component={DonationForm} />
+              <Route exact path="/donation-form/thank-you" component={ThankYou} />
+            </Switch>
+          </Layout>
         );
     }
 }
