@@ -12,7 +12,6 @@ import {
 import Options from '../lib/options.js'
 
 export default class DonationForm extends Component {
-
     constructor() {
         super()
         this.state                       = {
