@@ -11,8 +11,6 @@ import {
 
 import {
     Grid,
-    Row,
-    Col,
     Jumbotron
 } from 'react-bootstrap'
 
