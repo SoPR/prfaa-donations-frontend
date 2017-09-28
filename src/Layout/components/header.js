@@ -11,10 +11,12 @@ export default class ThankYou extends Component {
   render() {
     return(
       <Navbar collapseOnSelect>
-        <Navbar.Brand>
-          <Link to='/'>Home</Link>
-        </Navbar.Brand>
-        <Navbar.Toggle />
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to='/'>Home</Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
         <Navbar.Collapse>
         <Nav bsStyle="pills">
           <li role="presentation">
