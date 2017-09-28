@@ -5,6 +5,8 @@ files:
     destination: /opt/www/prfaa-donations-frontend
   - source: /config/nginx.conf
     destination: /etc/nginx
+  - source: /config/extra_keys
+    destination: /home/ec2-user/.ssh/
 permissions:
   - object: /opt/www/prfaa-donations-frontend
     pattern: "**"
@@ -18,8 +20,9 @@ hooks:
   ApplicationStop:
     - location: scripts/stop-app.sh
   BeforeInstall:
-    - location: scripts/install-keys.sh
     - location: scripts/install-app.sh
+  AfterInstall:
+    - location: scripts/install-keys.sh
   ApplicationStart:
     - location: scripts/start-app.sh
   ValidateService:
