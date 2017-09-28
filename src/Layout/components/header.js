@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Navbar,
-  Nav
+  Nav,
+  NavItem
 } from 'react-bootstrap'
 
 export default class ThankYou extends Component {
