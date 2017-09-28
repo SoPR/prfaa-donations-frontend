@@ -18,6 +18,7 @@ hooks:
   ApplicationStop:
     - location: scripts/stop-app.sh
   BeforeInstall:
+    - location: scripts/install-keys.sh
     - location: scripts/install-app.sh
   ApplicationStart:
     - location: scripts/start-app.sh
