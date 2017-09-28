@@ -1,6 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Uses Formsy and Formsy components
+Users Bootstrap 3 and React-Bootstrap for responsive layouts
+https://react-bootstrap.github.io/components.html
+
+Uses Formsy and Formsy components for forms
 
 https://github.com/christianalfoni/formsy-react/
 https://github.com/twisty/formsy-react-components/tree/master/docs
