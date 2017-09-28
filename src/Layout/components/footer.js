@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
+=======
+import { Link } from 'react-router-dom';
+>>>>>>> create header and footer components, reorganize style folders
 
 export default class ThankYou extends Component {
   render() {

@@ -17,13 +17,13 @@ class App extends Component {
     render() {
         return (
             <Layout>
-                <Switch>
-                    <Route exact path="/" component={LandingPage} />
-                    <Route exact path="/donation-form" component={DonationForm} />
-                    <Route exact path="/donation-form/thank-you" component={ThankYou} />
+              <Switch>
+                <Route exact path="/" component={LandingPage} />
+                <Route exact path="/donation-form" component={DonationForm} />
+                <Route exact path="/donation-form/thank-you" component={ThankYou} />
                     <Route exact path="/confirm" component={Confirm} />
                     <Route exact path="/search" component={Search} />
-                </Switch>
+              </Switch>
             </Layout>
         );
     }
