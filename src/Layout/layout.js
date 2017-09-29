@@ -4,10 +4,6 @@ import Footer from './components/footer.js'
 
 export default class Layout extends Component {
 
-  constructor() {
-    super()
-  }
-
   render() {
     return (
       <div>

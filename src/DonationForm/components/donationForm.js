@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
-import donationFormActions from '../actions/donationFormActions.js'
-import InputMask from '../../utils/inputMask.js'
-import Options from '../lib/options.js'
+import {
+    Grid,
+    Jumbotron,
+    Row,
+    Col,
+    ControlLabel
+} from 'react-bootstrap'
 import {
     Form,
     Input,
     Select,
     Textarea
 } from 'formsy-react-components';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
-import {
-    Grid,
-    Row,
-    Col,
-    Jumbotron
-} from 'react-bootstrap'
+import donationFormActions from '../actions/donationFormActions.js'
+import InputMask from '../../utils/inputMask.js'
+import Options from '../lib/options.js'
 
 import '../style/donationForm.css';
+import '../style/react-datepicker.css';
 
 
 export default class DonationForm extends Component {
@@ -25,7 +29,8 @@ export default class DonationForm extends Component {
         this.state                       = {
             showTranportationOptions: false,
             invalidSubmit:            false,
-            submissionErrors:         []
+            submissionErrors:         [],
+            expDate:                  null
         }
         this.phoneMask                   = new InputMask('(___) ___ - ____', '_')
         this.zipCodeMask                 = new InputMask('_____', '_')
@@ -34,6 +39,8 @@ export default class DonationForm extends Component {
         this.transportationNeededChanged = this.transportationNeededChanged.bind(this)
         this.successfulSubmission        = this.successfulSubmission.bind(this)
         this.submissionError             = this.submissionError.bind(this)
+        this.handleValidSubmission       = this.handleValidSubmission.bind(this)
+        this.handleExpirationDateChange  = this.handleExpirationDateChange.bind(this)
     }
 
     componentDidMount() {
@@ -59,6 +66,11 @@ export default class DonationForm extends Component {
     handleValidSubmission(data) {
         data.phoneNumber = data.phoneNumber.match(/\d+/g).join('')
         data.zipCode     = data.zipCode.match(/\d+/g).join('')
+
+        if (this.state.expDate) {
+            data.expDate = this.state.expDate.format("M-D-YYYY");
+        }
+
         alert(JSON.stringify(data));
         console.log(data)
         donationFormActions.submitFormRequest(data)
@@ -79,6 +91,12 @@ export default class DonationForm extends Component {
 
     transportationNeededChanged() {
         this.setState({showTranportationOptions: !this.state.showTranportationOptions})
+    }
+
+    handleExpirationDateChange(value) {
+        this.setState({
+            expDate: value
+        });
     }
 
     render() {
@@ -210,6 +228,21 @@ export default class DonationForm extends Component {
                                 labelClassName={[{'col-sm-3': false}, 'col-md-2 col-md-offset-2']}
                                 elementWrapperClassName={[{'col-sm-9': false}, 'col-md-6 col-xs-12']}
                             />
+                            <Row>
+                                <Col md={2} mdOffset={2} style={{ textAlign: 'right' }}>
+                                    <ControlLabel>
+                                        Offer Expiration
+                                    </ControlLabel>
+                                </Col>
+                                <Col md={6} xs={12}>
+                                    <DatePicker
+                                        selected={this.state.expDate}
+                                        onChange={this.handleExpirationDateChange}
+                                        className="form-control"
+                                        placeholderText="MM\DD\YYYY"
+                                    />
+                                </Col>
+                            </Row>
                             {
                                 this.state.showTranportationOptions ?
                                     <Select
