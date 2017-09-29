@@ -27,10 +27,21 @@
     }
 }
 
+.btn-donate{
+    background-color:#00b0f0;
+    color: white;
+    transition: 0.3s all;
+}
+
+.btn-donate:hover, .btn-donate:focus, .btn-donate:active{
+    background-color: #008ec2;
+    color: white
+}
+
 /* START Navbar Styles */
 .navbar-default{
     background-color: #00b0f0;
-    border-color:#00b0f0;
+    border:0px;
 }
 
 .navbar-default .navbar-brand{
@@ -79,6 +90,23 @@ footer{
 }
 /* END Footer Styles */
 
+/* START Landing Page Styles */
+
+#landing-page{
+    background: linear-gradient(0deg, #008ec2, white);
+    padding-bottom: 50px;
+    min-height: calc(100vh - 180px);
+    margin-top: -20px;
+    padding-top: 20px;
+}
+
+#landing-page #donate-button-conainer{
+    margin-top: 20px;
+    text-transform: capitalize;
+}
+
+/* End Landing Page Styles */
+
 /* START Form Styles */
 
 #donation-form .has-error{
@@ -86,20 +114,18 @@ footer{
     color: #2a2730;   
 }
 
-#donation-form .btn-success{
-    background-color:#00b0f0;
-    transition: 0.3s;
-}
-
-#donation-form .btn-success:hover, #donation-form .btn-success:focus{
-    background-color: #008ec2;
-}
 
 /* END Form Styles */
 
 /* Start Media Queries */
-@media (min-width: 767px){
+@media (min-width: 768px){
     .navbar-default .navbar-nav>li>a, .navbar-default .navbar-brand{
         transition: 0.3s all;
+    }
+    #landing-page .landing-text{
+        margin-top: 150px;
+    }
+    #landing-page #donate-button-conainer .btn-donate{
+        /* font-size: 25px; */
     }
 }
