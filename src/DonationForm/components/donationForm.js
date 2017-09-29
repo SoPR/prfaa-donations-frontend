@@ -15,9 +15,6 @@ import {
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import donationFormActions from '../actions/donationFormActions.js'
-import InputMask from '../../utils/inputMask.js'
-import Options from '../lib/options.js'
 
 import '../style/donationForm.css';
 import '../style/react-datepicker.css';
@@ -105,7 +102,7 @@ export default class DonationForm extends Component {
                 <Jumbotron>
                     <div className="form-container">
                         <div className="text-header"> Donation Form</div>
-                        <Form onChange={this.validateForm} onValidSubmit={this.handleValidSubmission} onValid={this.isValid}
+                        <Form id="donation-form" onChange={this.validateForm} onValidSubmit={this.handleValidSubmission} onValid={this.isValid}
                               onInvalidSubmit={this.invalidSubmit}>
                             <Input
                                 name="fullname"
@@ -274,19 +271,21 @@ export default class DonationForm extends Component {
                                 labelClassName={[{'col-sm-3': false}, 'col-md-2 col-md-offset-2']}
                                 elementWrapperClassName={[{'col-sm-9': false}, 'col-md-6 col-xs-12']}
                             />
+                            
+                            <Row>
+                                <Col xs={12} mdOffset={3} md={6} className='has-error text-center'>
+                                    {this.state.submissionErrors.length > 0 &&
+                                    <span className='help-block validation-message'>{this.state.submissionErrors.join('/n')}</span>}
+                                </Col>
+                            </Row>
 
-                            <div className='has-error'>
-                                {this.state.submissionErrors.length > 0 &&
-                                <span className='help-block validation-message'>{this.state.submissionErrors.join('/n')}</span>}
-                            </div>
-
-                            <div className="form-group row addMargin">
+                            <Row className="form-group addMargin">
                                 <div className="col-xs-12 text-center">
-                                    <button type="submit" className="btn btn-success col-xs-12 col-md-6 col-md-offset-3">
+                                    <Button className="col-xs-12 col-md-6 col-md-offset-3" type="submit" bsSize="large" bsStyle="success">
                                         Submit
-                                    </button>
+                                    </Button>
                                 </div>
-                            </div>
+                            </Row>
                         </Form>
                     </div>
                 </Jumbotron>
