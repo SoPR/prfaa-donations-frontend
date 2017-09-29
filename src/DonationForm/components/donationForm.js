@@ -253,7 +253,7 @@ export default class DonationForm extends Component {
 
                             <Row className="form-group addMargin">
                                 <div className="col-xs-12 text-center">
-                                    <Button className="col-xs-12 col-md-6 col-md-offset-3" type="submit" bsSize="large" bsStyle="success">
+                                    <Button className="col-xs-12 col-md-6 col-md-offset-3" type="submit" bsSize="large" bsStyle="donate">
                                         Submit
                                     </Button>
                                 </div>
