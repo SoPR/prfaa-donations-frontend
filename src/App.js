@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Layout from './Layout/layout.js'
-import Footer from './Layout/components/footer.js'
 
 import LandingPage from './LandingPage/components/landingPage.js'
 import DonationForm from './DonationForm/components/donationForm.js'

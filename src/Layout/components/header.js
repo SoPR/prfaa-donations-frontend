@@ -1,37 +1,30 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Navbar,
-  Nav,
-  NavItem
+    Navbar,
+    Nav,
+    NavItem
 } from 'react-bootstrap'
 
 export default class ThankYou extends Component {
 
-  render() {
-    return(
-      <Navbar staticTop>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to='/'>Home</Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-        <Nav bsStyle="pills">
-          <li role="presentation">
-            <Link eventKey={1} to='/donation-form'>Donation form link</Link>
-          </li>
-          <li role="presentation">
-            <Link eventKey={2} to='/donation-form/thank-you'>Thank You page link</Link>
-          </li>
-            <li role="presentation">
-                <Link eventKey={3} to='/search'>Search page link</Link>
-            </li>
-          </Nav>
-        </Navbar.Collapse>
-
-      </Navbar>
-    )
-  }
+    render() {
+        return (
+            <Navbar staticTop>
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        <Link to='/'>Home</Link>
+                    </Navbar.Brand>
+                    <Navbar.Toggle />
+                </Navbar.Header>
+                <Navbar.Collapse>
+                    <Nav>
+                        <NavItem eventKey={1} href="/donation-form">Donation form link</NavItem>
+                        <NavItem eventKey={2} href="/donation-form/thank-you">Thank You page link</NavItem>
+                        <NavItem eventKey={3} href='/search'>Search page link</NavItem>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        )
+    }
 }

@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
-import {
-    Grid,
-    Jumbotron,
-    Row,
-    Col,
-    ControlLabel
-} from 'react-bootstrap'
+
+import donationFormActions from '../actions/donationFormActions.js'
+
+import InputMask from '../../utils/inputMask.js'
+import Options from '../lib/options.js'
+
 import {
     Form,
     Input,
     Select,
     Textarea
 } from 'formsy-react-components';
+
+import {
+    Grid,
+    Row,
+    Col,
+    Jumbotron,
+    Button,
+    ControlLabel
+} from 'react-bootstrap'
+
+import '../style/donationForm.css';
+
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-
 import '../style/donationForm.css';
 import '../style/react-datepicker.css';
-
 
 export default class DonationForm extends Component {
     constructor() {
@@ -102,7 +111,8 @@ export default class DonationForm extends Component {
                 <Jumbotron>
                     <div className="form-container">
                         <div className="text-header"> Donation Form</div>
-                        <Form id="donation-form" onChange={this.validateForm} onValidSubmit={this.handleValidSubmission} onValid={this.isValid}
+                        <Form id="donation-form" onChange={this.validateForm} onValidSubmit={this.handleValidSubmission}
+                              onValid={this.isValid}
                               onInvalidSubmit={this.invalidSubmit}>
                             <Input
                                 name="fullname"
@@ -226,7 +236,7 @@ export default class DonationForm extends Component {
                                 elementWrapperClassName={[{'col-sm-9': false}, 'col-md-6 col-xs-12']}
                             />
                             <Row>
-                                <Col md={2} mdOffset={2} style={{ textAlign: 'right' }}>
+                                <Col md={2} mdOffset={2} style={{textAlign: 'right'}}>
                                     <ControlLabel>
                                         Offer Expiration
                                     </ControlLabel>
@@ -271,17 +281,19 @@ export default class DonationForm extends Component {
                                 labelClassName={[{'col-sm-3': false}, 'col-md-2 col-md-offset-2']}
                                 elementWrapperClassName={[{'col-sm-9': false}, 'col-md-6 col-xs-12']}
                             />
-                            
+
                             <Row>
                                 <Col xs={12} mdOffset={3} md={6} className='has-error text-center'>
                                     {this.state.submissionErrors.length > 0 &&
-                                    <span className='help-block validation-message'>{this.state.submissionErrors.join('/n')}</span>}
+                                    <span
+                                        className='help-block validation-message'>{this.state.submissionErrors.join('/n')}</span>}
                                 </Col>
                             </Row>
 
                             <Row className="form-group addMargin">
                                 <div className="col-xs-12 text-center">
-                                    <Button className="col-xs-12 col-md-6 col-md-offset-3" type="submit" bsSize="large" bsStyle="donate">
+                                    <Button className="col-xs-12 col-md-6 col-md-offset-3" type="submit" bsSize="large"
+                                            bsStyle="donate">
                                         Submit
                                     </Button>
                                 </div>
