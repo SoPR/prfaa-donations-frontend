@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import client from '../../Feathers';
+import searchActions from '../actions/searchActions'
 
 export default class Search extends Component {
     constructor() {
@@ -33,6 +34,14 @@ export default class Search extends Component {
         }
     }
 
+    claim = (id) => {
+        const data = {
+            acceptedBy: 'Placeholder Name',
+            id
+        }
+        searchActions.acceptDonation(data)
+    }
+
     render() {
         let results = [(<p>No results.</p>)];
         if (this.state.results.length) {
@@ -40,7 +49,10 @@ export default class Search extends Component {
                 let resultText = '';
                 Object.keys(result).forEach((key) => resultText += key + ': ' + result[key] + ' | ');
                 return (
-                    <p key={result.id}>{resultText}</p>
+                    <p key={result.id}>
+                        <button onClick={() => this.claim(result.id)}>Claim</button>
+                        {resultText}
+                    </p>
                 );
             });
         }
