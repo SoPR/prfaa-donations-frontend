@@ -10,6 +10,7 @@ import Confirm from './Confirm/components/confirm.js'
 import Search from './Search/components/search.js'
 
 import './Bootstrap3.3.7/bootstrap.min.css';
+import 'react-table/react-table.css'
 
 import './App.css';
 

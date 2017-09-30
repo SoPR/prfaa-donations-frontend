@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
     Navbar,
     Nav,
-    NavItem
 } from 'react-bootstrap'
 
 export default class ThankYou extends Component {
@@ -13,15 +12,21 @@ export default class ThankYou extends Component {
             <Navbar staticTop>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Link to='/'>Home</Link>
+                        <Link to="/">Home</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <NavItem eventKey={1} href="/donation-form">Donation form link</NavItem>
-                        <NavItem eventKey={2} href="/donation-form/thank-you">Thank You page link</NavItem>
-                        <NavItem eventKey={3} href='/search'>Search page link</NavItem>
+                        <li>
+                            <Link to="/donation-form">Donation form link</Link>
+                        </li>
+                        <li>
+                            <Link to="/donation-form/thank-you">Thank You page link</Link>
+                        </li>
+                        <li>
+                            <Link to="/search">Search page link</Link>
+                        </li>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
