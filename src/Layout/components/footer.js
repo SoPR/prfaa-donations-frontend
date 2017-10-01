@@ -8,7 +8,7 @@ import {
 export default class ThankYou extends Component {
   render() {
     return(
-      <footer>
+      <footer className='footer'>
         <Grid>
           <Row className="subFooter">
             <Col xs={12} className="text-center">

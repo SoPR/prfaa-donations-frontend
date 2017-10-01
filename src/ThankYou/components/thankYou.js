@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import {
+    Grid,
+    Row,
+    Col,
+    Jumbotron,
+    Button,
+} from 'react-bootstrap'
 
 export default class ThankYou extends Component {
   render() {
     return(
-      <div>
-        <h1>Thank You Page Under Construction</h1>
-        <Link to='/'>Landing page link</Link>
-        <Link to='/donation-form'>Donation form link</Link>
-      </div>
+      <Grid>
+        <Jumbotron>
+          <Row className='text-center'>
+            <p>Thank you for your submission. Please check your email for a confirmation.</p>
+          </Row>
+        </Jumbotron>
+      </Grid>
     )
   }
 }
