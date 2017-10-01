@@ -1,3 +1,46 @@
 .results {
   margin: 30px;
 }
+
+.detail-description {
+  margin: 0 10px;
+}
+
+.detail-description-header {
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 10px;
+}
+
+.detail-notes {
+  margin: 0 10px;
+}
+
+.detail-notes-header {
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 10px;
+}
+
+.details-header {
+  margin: 0 10px;
+}
+
+.detail-line {
+  flex: 1;
+  display: flex;
+  margin: 0 10px;
+  padding: 10px 0;
+  justify-content: space-between;
+  flex-direction: row;
+  border-bottom: 1px solid #CCC;
+}
+
+.detail-line-left {
+  color: #666;
+  font-weight: bold;
+}
+
+.detail-line-right {
+  color: #008ec2;
+  font-weight: bold;
+  text-align: right;
+}

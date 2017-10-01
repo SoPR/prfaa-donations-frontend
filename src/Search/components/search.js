@@ -15,6 +15,13 @@ import client from '../../Feathers';
 import searchActions from '../actions/searchActions';
 import './search.css';
 
+const DetailLine = ({ left, right }) => (
+	<div className="detail-line">
+		<div className="detail-line-left">{left}</div>
+		<div className="detail-line-right">{right}</div>
+	</div>
+);
+
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -133,15 +140,18 @@ export default class Search extends Component {
             },
             {
               Header: 'Confirmed',
-              accessor: 'isConfirmed'
+							id: 'isConfirmed',
+              accessor: d => d.isConfirmed ? 'YES' : 'NO'
             },
             {
               Header: 'Verified',
-              accessor: 'isVerified'
+							id: 'isVerified',
+							accessor: d => d.isVerified ? 'YES' : 'NO'
             },
             {
               Header: 'Accepted',
-              accessor: 'isAccepted'
+							id: 'isAccepted',
+							accessor: d => d.isAccepted ? 'YES' : 'NO'
             }
           ]}
           defaultPageSize={10}
@@ -151,7 +161,44 @@ export default class Search extends Component {
           })}
         />
       );
-    }
+		}
+		
+		let modalBody = null;
+
+		if (modalInfo) {
+			modalBody = (
+				<Modal.Body>
+					<div className="detail-description">
+						<h4 className="detail-description-header">Description</h4>
+						<p>{modalInfo.detailedDescription ? modalInfo.detailedDescription : ''}</p>
+					</div>
+					<br/>
+					<br/>
+					<div className="details-header">
+						<h4>Details</h4>
+					</div>
+					<DetailLine left="FULLNAME" right={modalInfo.fullname}/>
+					<DetailLine left="ORGANIZATION" right={modalInfo.organizationName}/>
+					<DetailLine left="ORGANIZATION TYPE" right={modalInfo.organizationType}/>
+					<DetailLine left="EMAIL" right={modalInfo.email}/>
+					<DetailLine left="PHONE NUMBER" right={modalInfo.phoneNumber}/>
+					<DetailLine left="CATEGORY" right={modalInfo.donationCategory}/>
+					<DetailLine left="LOCATION" right={`${modalInfo.locationOfDonation}, ${modalInfo.zipCode}`}/>
+					<DetailLine left="NEEDS TRANSPORTATION" right={modalInfo.transportationNeed ? 'YES' : 'NO'}/>
+					<DetailLine left="TRANSPORTATION TYPE" right={modalInfo.transportationType}/>
+					{modalInfo.expDate ? <DetailLine left="EXPIRATION DATE" right={modalInfo.expDate}/> : null}
+					<DetailLine left="CONFIRMED" right={modalInfo.isConfirmed ? 'YES' : 'NO'}/>
+					<DetailLine left="VERIFIED" right={modalInfo.isVerified ? 'YES' : 'NO'}/>
+					<DetailLine left="ACCEPTED" right={modalInfo.isAccepted ? 'YES' : 'NO'}/>
+					<br/>
+					<br/>
+					<div className="detail-notes">
+						<h4 className="detail-notes-header">Notes</h4>
+						<p>{modalInfo.notes ? modalInfo.notes : ''}</p>
+					</div>
+				</Modal.Body>
+			);
+		}
 
     return (
       <div>
@@ -186,9 +233,7 @@ export default class Search extends Component {
           <Modal.Header closeButton>
             <Modal.Title>More Information</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            {JSON.stringify(modalInfo, null, 2)}
-          </Modal.Body>
+          {modalBody}
         </Modal>
       </div>
     );
