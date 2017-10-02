@@ -235,21 +235,6 @@ export default class DonationForm extends Component {
                                 labelClassName={[{'col-sm-3': false}, 'col-md-2 col-md-offset-2']}
                                 elementWrapperClassName={[{'col-sm-9': false}, 'col-md-6 col-xs-12']}
                             />
-                            <Row>
-                                <Col md={2} mdOffset={2} style={{textAlign: 'right'}}>
-                                    <ControlLabel>
-                                        Offer Expiration
-                                    </ControlLabel>
-                                </Col>
-                                <Col md={6} xs={12}>
-                                    <DatePicker
-                                        selected={this.state.expDate}
-                                        onChange={this.handleExpirationDateChange}
-                                        className="form-control"
-                                        placeholderText="MM\DD\YYYY"
-                                    />
-                                </Col>
-                            </Row>
                             {
                                 this.state.showTranportationOptions ?
                                     <Select
@@ -272,6 +257,21 @@ export default class DonationForm extends Component {
                                         elementWrapperClassName={[{'col-sm-9': false}, 'col-md-6 col-xs-12']}
                                     />
                             }
+                            <Row>
+                                <Col md={2} mdOffset={2} style={{textAlign: 'right'}}>
+                                    <ControlLabel>
+                                        Offer Expiration
+                                    </ControlLabel>
+                                </Col>
+                                <Col md={6} xs={12}>
+                                    <DatePicker
+                                        selected={this.state.expDate}
+                                        onChange={this.handleExpirationDateChange}
+                                        className="form-control"
+                                        placeholderText="MM\DD\YYYY"
+                                    />
+                                </Col>
+                            </Row>
                             <Textarea
                                 name="notes"
                                 label="Additional Notes"
