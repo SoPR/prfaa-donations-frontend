@@ -6,7 +6,8 @@ import {
 	FormGroup,
 	FormControl,
 	InputGroup,
-	Button
+	Button,
+	Pagination
 } from 'react-bootstrap';
 import ReactTable from 'react-table';
 import queryString from 'query-string';
@@ -30,7 +31,10 @@ export default class Search extends Component {
       searchTerm: '',
       modalInfo: null,
 			showModal: false,
-			userHasTyped: false
+			userHasTyped: false,
+			pages: 0,
+			activePage: 0,
+			limit: 0
     };
   }
 
@@ -60,14 +64,22 @@ export default class Search extends Component {
     const donationOffer = client.service('donation-offer');
     this.setState({
 			results: [],
-			userHasTyped: true
+			userHasTyped: true,
+			pages: 1,
+			activePage: 1,
+			limit: 0
     });
     if (this.state.searchTerm.length) {
+			this.props.history.replace(`/search?q=${this.state.searchTerm}`);
       return donationOffer
         .find({ query: { $search: this.state.searchTerm } })
-        .then(resultResponse =>
-          this.setState({ results: resultResponse.data })
-        )
+        .then(resultResponse => {
+          this.setState({
+						results: resultResponse.data,
+						pages: (resultResponse.total / resultResponse.limit) + 1,
+						limit: resultResponse.limit
+					});
+				})
         .catch(alert);
     } else {
       return this.setState({ results: [] });
@@ -94,7 +106,7 @@ export default class Search extends Component {
       if (handleOriginal) {
         handleOriginal();
       }
-    };
+		};
   };
 
   closeModal = () => {
@@ -102,7 +114,23 @@ export default class Search extends Component {
       showModal: false,
       modalInfo: null
     });
-  };
+	};
+
+	handleSelect = (eventKey) => {
+		const activePage = eventKey;
+		const skip = (eventKey - 1) * this.state.limit;
+		const donationOffer = client.service('donation-offer');
+
+		return donationOffer
+		.find({ query: { $search: this.state.searchTerm, $skip: skip } })
+		.then(resultResponse => {
+			this.setState({
+				results: resultResponse.data,
+				activePage: activePage
+			});
+		})
+		.catch(alert);
+	};
 
   render() {
 		const { userHasTyped, showModal, modalInfo, results, searchTerm } = this.state;
@@ -159,6 +187,8 @@ export default class Search extends Component {
           getTdProps={(state, rowInfo) => ({
             onClick: this.handleRowClick(rowInfo)
           })}
+					showPageSizeOptions={false}
+					showPagination={false}
         />
       );
 		}
@@ -228,7 +258,15 @@ export default class Search extends Component {
             </FormGroup>
           </Col>
         </Row>
-        <div className="results" style={{ marginBottom: 80 }}>{content}</div>
+        <div className="results" style={{ marginBottom: 80 }}>
+					{content}
+					<Pagination
+						bsSize="medium"
+						items={this.state.pages}
+						activePage={this.state.activePage}
+						onSelect={this.handleSelect}
+					/>
+				</div>
         <Modal show={showModal} onHide={this.closeModal}>
           <Modal.Header closeButton>
             <Modal.Title>More Information</Modal.Title>
