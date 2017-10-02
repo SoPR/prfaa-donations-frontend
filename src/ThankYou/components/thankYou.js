@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import {
     Grid,
     Row,
-    Col,
     Jumbotron,
-    Button,
 } from 'react-bootstrap'
 
 export default class ThankYou extends Component {
