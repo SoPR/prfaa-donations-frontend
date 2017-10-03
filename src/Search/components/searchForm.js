@@ -80,7 +80,9 @@ export default class SearchForm extends Component {
                         limit:   resultResponse.limit
                     });
                 })
-                .catch(alert);
+                .catch((err) => {
+                    // TODO: handle err
+                });
         }
         else {
             return this.setState({results: []});
@@ -97,7 +99,6 @@ export default class SearchForm extends Component {
 
     handleRowClick = rowInfo => {
         return (e, handleOriginal) => {
-            console.log('It was in this row:', rowInfo);
 
             this.setState({
                 modalInfo: rowInfo.original,
@@ -130,7 +131,9 @@ export default class SearchForm extends Component {
                     activePage: activePage
                 });
             })
-            .catch(alert);
+            .catch((err) => {
+                // TODO: handle err
+            });
     };
 
     render() {

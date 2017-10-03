@@ -12,11 +12,12 @@ export default class Search extends Component {
 
     componentDidMount() {
         client.authenticate()
-            .then(() => console.log('auth success'))
+            .then(() => {
+                // TODO: do something?
+            })
             .catch((err) => this.setState({login: null}));
 
         client.on('authenticated', login => {
-            console.log('authed?', login);
             this.setState({login});
         });
         client.on('logout', () => this.setState({
