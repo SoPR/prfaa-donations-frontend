@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Grid,
   Row,
-  Col,
-  Button
+  Col
 } from 'react-bootstrap'
 
 export default class LandingPage extends Component {
@@ -18,7 +18,7 @@ export default class LandingPage extends Component {
         </Row>
         <Row id="donate-button-conainer">
           <Col xs={12} className="text-center">
-            <Button bsStyle="donate" bsSize="large" href='/donation-form'>Donation form link</Button>
+            <Link className="btn btn-lg btn-donate" to="/donation-form">Submit your donation</Link>
           </Col>
         </Row>
       </Grid>

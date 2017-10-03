@@ -4,8 +4,8 @@ import queryString from 'query-string';
 import client from '../../Feathers';
 
 export default class Confirm extends Component {
-    constructor() {
-        super();
+    constructor(...args) {
+        super(...args);
         this.state = {
             confirmed: false,
             error:     false
@@ -18,13 +18,13 @@ export default class Confirm extends Component {
 
         if (qs.id) {
             confirmService.get(qs.id)
-                .then(() => this.setState({confirmed: true}))
-                .catch((err) => this.setState({error: err}));
+                .then(() => this.setState({ confirmed: true }))
+                .catch((err) => this.setState({ error: err }));
         }
     }
 
     render() {
-        let jsx;
+        let jsx = null;
 
         if (!this.state.confirmed && !this.state.error) {
             jsx = (
@@ -42,7 +42,7 @@ export default class Confirm extends Component {
                         A PRFAA agent will be in touch with you regarding your donation.<br />
                         Thank you again!
                     </p>
-                    <Link to='/'>Landing page link</Link>
+                    <Link to='/'>Home</Link>
                 </div>
             );
         }
@@ -51,7 +51,7 @@ export default class Confirm extends Component {
                 <div>
                     <h1>Sorry, we were unable to confirm your donation at this time.</h1>
                     <p>
-                        Please try again later or <Link to='/donation-offer'>resubmit your offer</Link>.
+                        Please try again later or <Link to='/donation-offer'>resubmit your donation</Link>.
                     </p>
                 </div>
             );
