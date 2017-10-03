@@ -1,9 +1,9 @@
 {
-    "short_name": "React App",
-    "name": "Create React App Sample",
+    "short_name": "PRFAA",
+    "name": "Puerto Rico Federal Affairs Administration",
     "icons": [
         {
-            "src": "favicon.ico",
+            "src": "192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         }
