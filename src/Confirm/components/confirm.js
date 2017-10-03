@@ -9,7 +9,7 @@ export default class Confirm extends Component {
         this.state = {
             confirmed: false,
             error:     false
-        }
+        };
     }
 
     componentDidMount() {

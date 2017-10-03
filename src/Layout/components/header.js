@@ -4,7 +4,7 @@ import {
     Navbar,
     Nav,
     NavItem
-} from 'react-bootstrap'
+} from 'react-bootstrap';
 
 import branding from '../../brandingConfig';
 
@@ -29,7 +29,7 @@ class Header extends Component {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-        )
+        );
     }
 }
 

@@ -48,7 +48,7 @@ export default class Search extends Component {
                     <button onClick={this.logout}>Logout</button>
                     <SearchForm {...this.props} />
                 </div>
-            )
+            );
         }
 
         return jsx;
