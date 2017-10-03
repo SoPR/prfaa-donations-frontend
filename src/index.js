@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import './Bootstrap3.3.7/bootstrapOverrides.css';
 import App from './App';

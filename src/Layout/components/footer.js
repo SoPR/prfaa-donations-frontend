@@ -5,7 +5,7 @@ import {
   Col
 } from 'react-bootstrap'
 
-export default class ThankYou extends Component {
+export default class subFooter extends Component {
   render() {
     return(
       <footer className='footer'>
@@ -16,7 +16,6 @@ export default class ThankYou extends Component {
             </Col>
           </Row>
         </Grid>
-
       </footer>
 
     )

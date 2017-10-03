@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import donationFormActions from '../actions/donationFormActions.js'
-
-import InputMask from '../../utils/inputMask.js'
-import Options from '../lib/options.js'
+import donationFormActions from '../actions/donationFormActions';
+import InputMask from '../../utils/inputMask';
+import Options from '../lib/options';
 
 import {
     Form,
@@ -60,7 +59,7 @@ export default class DonationForm extends Component {
     }
 
     successfulSubmission() {
-        this.props.history.push('/donation-form/thank-you')
+        this.props.history.push('/donation-form/thank-you');
     }
 
     submissionError() {
@@ -292,8 +291,7 @@ export default class DonationForm extends Component {
 
                             <Row className="form-group addMargin">
                                 <div className="col-xs-12 text-center">
-                                    <Button className="col-xs-12 col-md-6 col-md-offset-3" type="submit" bsSize="large"
-                                            bsStyle="donate">
+                                    <Button className="col-xs-12 col-md-6 col-md-offset-3 btn-donate" type="submit" bsSize="large">
                                         Submit
                                     </Button>
                                 </div>

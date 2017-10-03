@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Layout from './Layout/layout.js'
+import Layout from './Layout/layout';
 
-import LandingPage from './LandingPage/components/landingPage.js'
-import DonationForm from './DonationForm/components/donationForm.js'
-import ThankYou from './ThankYou/components/thankYou.js'
-import Confirm from './Confirm/components/confirm.js'
-import Search from './Search/components/search.js'
+import LandingPage from './LandingPage/components/landingPage';
+import DonationForm from './DonationForm/components/donationForm';
+import ThankYou from './ThankYou/components/thankYou';
+import Confirm from './Confirm/components/confirm';
+import Search from './Search/components/search';
 
 import './Bootstrap3.3.7/bootstrap.min.css';
-import 'react-table/react-table.css'
+import 'react-table/react-table.css';
 
 import './App.css';
 
