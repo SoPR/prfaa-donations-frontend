@@ -117,6 +117,14 @@ footer{
 
 /* END Form Styles */
 
+/* Start thankyou form Styles */
+
+.green svg{
+    color: green;
+}
+
+/* End Thankyou Form styles */
+
 /* Start Media Queries */
 @media (min-width: 768px){
     .navbar-default .navbar-nav>li>a, .navbar-default .navbar-brand{

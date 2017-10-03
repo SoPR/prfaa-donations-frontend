@@ -6,8 +6,11 @@ import {
     Grid,
     Jumbotron,
     Row,
-    Col
-} from 'react-bootstrap'
+    Col,
+    Glyphicon
+} from 'react-bootstrap';
+import FaCheck from 'react-icons/lib/fa/check';
+
 
 export default class Confirm extends Component {
     constructor(...args) {
@@ -32,17 +35,18 @@ export default class Confirm extends Component {
     render() {
         let jsx = null;
 
-        if (!this.state.confirmed && !this.state.error) {
+        if (!this.state.confirmed && !this.state.error && false) {
             jsx = (
                 <div>
                     <h2>Confirming your Donation... (please wait)</h2>
                 </div>
             );
         }
-        else if (this.state.confirmed) {
+        else if (this.state.confirmed || true) {
             jsx = (
                 <div>
-                    <h2>Thank You for Confirming your Donation!</h2>
+                    <h1>Thank You for Confirming your Donation!</h1>
+                    <h1 className="green"><FaCheck /></h1>
                     <p>
                         Your donation offer has been confirmed.<br />
                         A PRFAA agent will be in touch with you regarding your donation.<br />
@@ -64,7 +68,7 @@ export default class Confirm extends Component {
         }
 
         return (
-            <Grid>
+            <Grid fluid>
                 <Jumbotron>
                     <Row>
                         <Col xs={12} className="text-center">
