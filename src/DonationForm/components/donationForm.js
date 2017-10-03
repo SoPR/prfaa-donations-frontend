@@ -77,8 +77,6 @@ export default class DonationForm extends Component {
             data.expDate = this.state.expDate.format("M-D-YYYY");
         }
 
-        alert(JSON.stringify(data));
-        console.log(data)
         donationFormActions.submitFormRequest(data)
     }
 

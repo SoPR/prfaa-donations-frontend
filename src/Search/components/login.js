@@ -16,7 +16,6 @@ class Login extends Component {
     }
 
     handleInputChange = (target, value) => {
-        console.log('event is ', target, value);
 
         this.setState({
             [target]: value
@@ -40,7 +39,9 @@ class Login extends Component {
             strategy: 'local',
             username: this.state.username,
             password: this.state.password
-        }).catch(alert);
+        }).catch((err) => {
+            // TODO: handle err
+        });
     }
 
     render() {
