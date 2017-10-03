@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import client from '../../Feathers';
+import {
+    Grid,
+    Jumbotron,
+    Row,
+    Col
+} from 'react-bootstrap'
 
 export default class Confirm extends Component {
     constructor(...args) {
@@ -29,14 +35,14 @@ export default class Confirm extends Component {
         if (!this.state.confirmed && !this.state.error) {
             jsx = (
                 <div>
-                    <h1>Confirming your Donation... (please wait)</h1>
+                    <h2>Confirming your Donation... (please wait)</h2>
                 </div>
             );
         }
         else if (this.state.confirmed) {
             jsx = (
                 <div>
-                    <h1>Thank You for Confirming your Donation!</h1>
+                    <h2>Thank You for Confirming your Donation!</h2>
                     <p>
                         Your donation offer has been confirmed.<br />
                         A PRFAA agent will be in touch with you regarding your donation.<br />
@@ -57,6 +63,15 @@ export default class Confirm extends Component {
             );
         }
 
-        return jsx;
+        return (
+            <Grid>
+                <Jumbotron>
+                    <Row>
+                        <Col xs={12} className="text-center">
+                            {jsx}
+                        </Col>
+                    </Row>
+                </Jumbotron>
+            </Grid>);
     }
 }
