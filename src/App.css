@@ -95,7 +95,7 @@ footer{
 #landing-page{
     background: linear-gradient(0deg, #008ec2, white);
     padding-bottom: 50px;
-    min-height: calc(100vh - 180px);
+    min-height: calc(100vh - 150px);
     margin-top: -20px;
     padding-top: 20px;
 }
