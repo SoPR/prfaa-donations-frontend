@@ -6,10 +6,10 @@ import {
     Grid,
     Jumbotron,
     Row,
-    Col,
-    Glyphicon
+    Col
 } from 'react-bootstrap';
 import FaCheck from 'react-icons/lib/fa/check';
+import FaSpinner from 'react-icons/lib/fa/spinner';
 
 
 export default class Confirm extends Component {
@@ -35,14 +35,15 @@ export default class Confirm extends Component {
     render() {
         let jsx = null;
 
-        if (!this.state.confirmed && !this.state.error && false) {
+        if (!this.state.confirmed && !this.state.error) {
             jsx = (
                 <div>
                     <h2>Confirming your Donation... (please wait)</h2>
+                    <div className="svg-spin"><FaSpinner className="fa-spin"/></div>
                 </div>
             );
         }
-        else if (this.state.confirmed || true) {
+        else if (this.state.confirmed) {
             jsx = (
                 <div>
                     <h1 className="green"><FaCheck /></h1>
