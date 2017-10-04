@@ -84,8 +84,8 @@ class Login extends Component {
                             Submit
                         </Button>
                     </Form>
-            </Grid>
-                </div>
+                </Grid>
+            </div>
         );
     }
 }
