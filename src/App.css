@@ -83,8 +83,8 @@
 
 /* START Footer Styles */
 footer{
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 35px;
+    padding-bottom: 35px;
     background-color: #2a2730;
     color: white;
 }
@@ -132,9 +132,6 @@ footer{
     }
     #landing-page .landing-text{
         margin-top: 150px;
-    }
-    #landing-page #donate-button-conainer .btn-donate{
-        /* font-size: 25px; */
     }
 }
 
