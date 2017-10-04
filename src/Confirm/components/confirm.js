@@ -45,14 +45,14 @@ export default class Confirm extends Component {
         else if (this.state.confirmed || true) {
             jsx = (
                 <div>
-                    <h1>Thank You for Confirming your Donation!</h1>
                     <h1 className="green"><FaCheck /></h1>
+                    <h1>Thank You for Confirming your Donation!</h1>
                     <p>
                         Your donation offer has been confirmed.<br />
                         A PRFAA agent will be in touch with you regarding your donation.<br />
                         Thank you again!
                     </p>
-                    <Link to='/'>Home</Link>
+                    <Link className="btn btn-lg btn-donate" to='/'>Go Back to the Home Page</Link>
                 </div>
             );
         }
