@@ -123,8 +123,12 @@ footer{
     color: green;
 }
 
-svg.fa-spin{
+div.fa svg{
     font-size: 40px;
+}
+div.goX svg{
+    font-size: 60px;
+    color:red;
 }
 
 .svg-spin svg.fa-spin{
