@@ -1,0 +1,29 @@
+#login-page{
+    margin-top: -20px;
+    margin-bottom: -15px;
+    min-height: calc(100vh - 135px);
+    background: linear-gradient(0deg, #008ec2, white);
+    
+}
+
+#login-page button{
+    margin-bottom: 20px;
+}
+
+form#signin{
+    padding-top: 40px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+form#signin .help-block{
+    color: #333;
+}
+
+.btn-default, .btn-default.btn-donate, .btn-default[disabled]{
+    border: 0px;
+}
+
+.btn-default[disabled]:hover{
+    background-color: #8fc5e0;
+}

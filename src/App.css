@@ -83,8 +83,8 @@
 
 /* START Footer Styles */
 footer{
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 35px;
+    padding-bottom: 35px;
     background-color: #2a2730;
     color: white;
 }
@@ -95,7 +95,7 @@ footer{
 #landing-page{
     background: linear-gradient(0deg, #008ec2, white);
     padding-bottom: 50px;
-    min-height: calc(100vh - 180px);
+    min-height: calc(100vh - 150px);
     margin-top: -20px;
     padding-top: 20px;
 }
@@ -117,6 +117,43 @@ footer{
 
 /* END Form Styles */
 
+/* Start thankyou form Styles */
+
+.green svg{
+    color: green;
+}
+
+div.fa svg{
+    font-size: 40px;
+}
+div.goX svg{
+    font-size: 60px;
+    color:red;
+}
+
+.svg-spin svg.fa-spin{
+    animation: spin 1s linear infinite; 
+}
+
+@-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg); 
+      transform:rotate(360deg);
+    }
+  }
+
+/* End Thankyou Form styles */
+
 /* Start Media Queries */
 @media (min-width: 768px){
     .navbar-default .navbar-nav>li>a, .navbar-default .navbar-brand{
@@ -124,9 +161,6 @@ footer{
     }
     #landing-page .landing-text{
         margin-top: 150px;
-    }
-    #landing-page #donate-button-conainer .btn-donate{
-        /* font-size: 25px; */
     }
 }
 
