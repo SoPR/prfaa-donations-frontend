@@ -176,11 +176,6 @@ export default class SearchForm extends Component {
                             accessor: d => d.isConfirmed ? 'YES' : 'NO'
                         },
                         {
-                            Header:   'Verified',
-                            id:       'isVerified',
-                            accessor: d => d.isVerified ? 'YES' : 'NO'
-                        },
-                        {
                             Header:   'Accepted',
                             id:       'isAccepted',
                             accessor: d => d.isAccepted ? 'YES' : 'NO'
@@ -222,7 +217,6 @@ export default class SearchForm extends Component {
                     <DetailLine left="TRANSPORTATION TYPE" right={modalInfo.transportationType} />
                     {modalInfo.expDate ? <DetailLine left="EXPIRATION DATE" right={modalInfo.expDate} /> : null}
                     <DetailLine left="CONFIRMED" right={modalInfo.isConfirmed ? 'YES' : 'NO'} />
-                    <DetailLine left="VERIFIED" right={modalInfo.isVerified ? 'YES' : 'NO'} />
                     <DetailLine left="ACCEPTED" right={modalInfo.isAccepted ? 'YES' : 'NO'} />
                     <br />
                     <br />
