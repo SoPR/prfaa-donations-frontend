@@ -1,5 +1,5 @@
 import React  from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import branding from '../../brandingConfig';
@@ -30,5 +30,3 @@ export default function Header() {
     </Navbar>
   );
 }
-
-export default withRouter(Header);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import client from '../../Feathers';
-import uuid from 'node-uuid';
 import SearchForm from './searchForm';
 import Login from './login';
 import './search.css';

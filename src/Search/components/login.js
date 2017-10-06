@@ -80,7 +80,7 @@ class Login extends Component {
                             labelClassName={[{'col-sm-3': false}, 'col-md-2 col-md-offset-2']}
                             elementWrapperClassName={[{'col-sm-9': false}, 'col-md-6 col-xs-12']}
                         />
-                        <Button type="submit" disabled={!this.state.canSubmit} className="col-xs-12 col-md-6 col-md-offset-3 btn-donate" type="submit" bsSize="large">
+                        <Button type="submit" disabled={!this.state.canSubmit} className="col-xs-12 col-md-6 col-md-offset-3 btn-donate"  bsSize="large">
                             Submit
                         </Button>
                     </Form>
