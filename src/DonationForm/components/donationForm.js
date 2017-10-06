@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-
-import donationFormActions from '../actions/donationFormActions';
-import InputMask from '../../utils/inputMask';
-import Options from '../lib/options';
-
+import DatePicker from 'react-datepicker';
 import {
     Form,
     Input,
     Select,
     Textarea
 } from 'formsy-react-components';
-
 import {
     Grid,
     Row,
@@ -18,20 +13,20 @@ import {
     Jumbotron,
     Button,
     ControlLabel
-} from 'react-bootstrap'
-
+} from 'react-bootstrap';
+import donationFormActions from '../actions/donationFormActions.js'
+import InputMask from '../../utils/inputMask.js'
+import Options from '../lib/options.js'
 import '../style/donationForm.css';
-
-import DatePicker from 'react-datepicker';
+import '../style/donationForm.css';
 import 'react-datepicker/dist/react-datepicker.css';
-
 import '../style/donationForm.css';
 import '../style/react-datepicker.css';
 
 export default class DonationForm extends Component {
     constructor() {
-        super()
-        this.state                       = {
+        super();
+        this.state = {
             showTranportationOptions: false,
             invalidSubmit:            false,
             submissionErrors:         [],
@@ -49,13 +44,13 @@ export default class DonationForm extends Component {
     }
 
     componentDidMount() {
-        document.addEventListener('donationSubmitted', this.successfulSubmission)
-        document.addEventListener('submissionError', this.submissionError)
+        document.addEventListener('donationSubmitted', this.successfulSubmission);
+        document.addEventListener('submissionError', this.submissionError);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('donationSubmitted', this.successfulSubmission)
-        document.removeEventListener('submissionError', this.submissionError)
+        document.removeEventListener('donationSubmitted', this.successfulSubmission);
+        document.removeEventListener('submissionError', this.submissionError);
     }
 
     successfulSubmission() {
@@ -63,9 +58,8 @@ export default class DonationForm extends Component {
     }
 
     submissionError() {
-        let errorArray = this.state.submissionErrors
-        errorArray.push('There was an error processing your request.')
-        this.setState({submissionErrors: errorArray})
+        const submissionErrors = [...this.state.submissionErrors, 'There was an error processing your request.'];
+        this.setState({ submissionErrors });
     }
 
     handleValidSubmission(data) {
@@ -80,20 +74,18 @@ export default class DonationForm extends Component {
     }
 
     invalidSubmit() {
-        let errorArray = this.state.submissionErrors
-        errorArray.push('Please fix the errors above.')
-        this.setState({submissionErrors: errorArray})
+        const submissionErrors = [...this.state.submissionErrors , 'Please fix the errors above.'];
+        this.setState({ submissionErrors });
     }
 
     isValid() {
-        let errorArray = this.state.submissionErrors
-        let errorIndex = this.state.submissionErrors.indexOf('Please fix the errors above.')
-        errorArray.splice(errorIndex, 1)
-        this.setState({submissionErrors: errorArray})
+        const errorIndex = this.state.submissionErrors.indexOf('Please fix the errors above.');
+        const submissionErrors = this.state.submissionErrors.slice(errorIndex, 1);
+        this.setState({ submissionErrors })
     }
 
     transportationNeededChanged() {
-        this.setState({showTranportationOptions: !this.state.showTranportationOptions})
+        this.setState({ showTranportationOptions: !this.state.showTranportationOptions })
     }
 
     handleExpirationDateChange(value) {
@@ -225,7 +217,7 @@ export default class DonationForm extends Component {
                                 name="transportationNeed"
                                 label="Do you need transportation of goods?"
                                 options={Options.needsTransportationOptions}
-                                value={false}
+                                value='false'
                                 onChange={this.transportationNeededChanged}
                                 required
                                 rowClassName="addMargin"

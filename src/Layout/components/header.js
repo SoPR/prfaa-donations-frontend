@@ -1,37 +1,32 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import {
-    Navbar,
-    Nav,
-    NavItem
-} from 'react-bootstrap'
-
+import React  from 'react';
+import { Link } from 'react-router-dom';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import branding from '../../brandingConfig';
 
-class Header extends Component {
-    render() {
-        return (
-            <Navbar staticTop>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <Link to="/">{branding.logoUrl ? <img src={branding.logoUrl} alt="Home" />: 'Home'}</Link>
-                    </Navbar.Brand>
-                    <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                    <Nav>
-                        <NavItem eventKey={1} onClick={() => this.props.history.push('/donation-form')}>
-                            Submit your donation
-                        </NavItem>
-                        <NavItem eventKey={2} onClick={() => this.props.history.push('/search')}>
-                            Search
-                        </NavItem>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
-        )
-    }
+export default function Header() {
+  return(
+    <Navbar staticTop>
+      <Navbar.Header>
+        <Navbar.Brand>
+            <Link to="/">{branding.logoUrl ? <img src={branding.logoUrl} alt="Home" />: 'Home'}</Link>
+        </Navbar.Brand>
+        <Navbar.Toggle />
+      </Navbar.Header>
+      <Navbar.Collapse>
+        <Nav bsStyle="pills">
+          <LinkContainer to='/donation-form'>
+            <NavItem eventKey={1}>
+              Submit your donation
+            </NavItem>
+          </LinkContainer>
+          <LinkContainer to='/search'>
+            <NavItem eventKey={2}>
+              Search
+            </NavItem>
+          </LinkContainer>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  );
 }
-
-
-export default withRouter(Header);

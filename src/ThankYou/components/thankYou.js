@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Grid,
     Row,
     Jumbotron,
 } from 'react-bootstrap'
 
-export default class ThankYou extends Component {
-  render() {
-    return(
+export default function ThankYou() {
+  return (
       <Grid>
         <Jumbotron>
           <Row className='text-center'>
@@ -15,6 +14,5 @@ export default class ThankYou extends Component {
           </Row>
         </Jumbotron>
       </Grid>
-    )
-  }
+   );
 }

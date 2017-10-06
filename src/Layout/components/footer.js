@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Grid,
   Row,
   Col
-} from 'react-bootstrap'
+} from 'react-bootstrap';
 
-export default class subFooter extends Component {
-  render() {
-    return(
-      <footer className='footer'>
-        <Grid>
-          <Row className="subFooter">
-            <Col xs={12} className="text-center">
-              <p>Powered by DonDB</p>
-            </Col>
-          </Row>
-        </Grid>
-      </footer>
-
-    )
-  }
+export default function Footer() {
+  return (
+    <div className='footer'>
+      <Grid>
+        <Row className="subFooter">
+          <Col xs={12} className="text-center">
+            <p>Powered by DonDB</p>
+          </Col>
+        </Row>
+      </Grid>
+    </div>
+  );
 }

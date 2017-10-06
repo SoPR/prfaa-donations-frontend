@@ -21,17 +21,17 @@ export default class Confirm extends Component {
         this.state = {
             confirmed: false,
             error:     false
-        }
+        };
     }
 
     componentDidMount() {
         const confirmService = client.service('confirm');
-        const qs             = queryString.parse(this.props.location.search);
+        const qs = queryString.parse(this.props.location.search);
 
         if (qs.id) {
             confirmService.get(qs.id)
-                .then(() => this.setState({ confirmed: true }))
-                .catch((err) => this.setState({ error: err }));
+              .then(() => this.setState({confirmed: true}))
+              .catch((err) => this.setState({error: err}));
         }
     }
 
@@ -45,8 +45,7 @@ export default class Confirm extends Component {
                     <div className="svg-spin fa"><FaSpinner className="fa-spin"/></div>
                 </div>
             );
-        }
-        else if (this.state.confirmed) {
+        } else if (this.state.confirmed) {
             jsx = (
                 <div>
                     <h1 className="green"><FaCheck /></h1>
@@ -59,8 +58,7 @@ export default class Confirm extends Component {
                     <Link className="btn btn-lg btn-donate" to='/'>Go Back to the Home Page</Link>
                 </div>
             );
-        }
-        else if (this.state.error) {
+        } else if (this.state.error) {
             jsx = (
                 <div>
                     <div className="goX"><GoX/></div>
@@ -71,7 +69,6 @@ export default class Confirm extends Component {
                 </div>
             );
         }
-
         return (
             <Grid fluid>
                 <Jumbotron>

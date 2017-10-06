@@ -5,9 +5,9 @@ import Login from './login';
 import './search.css';
 
 export default class Search extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
+    constructor() {
+       super();
+       this.state = {};
     }
 
     componentDidMount() {
@@ -18,31 +18,29 @@ export default class Search extends Component {
             .catch((err) => this.setState({login: null}));
 
         client.on('authenticated', login => {
-            this.setState({login});
+            this.setState({ login });
         });
         client.on('logout', () => this.setState({
-            login:         null,
-            driveAccounts: null
+            login: null,
+            driveAccounts: null,
         }));
     }
 
     logout = (e) => {
         e.preventDefault();
-
         return client.logout();
     }
 
     render() {
         let jsx = (
-            <Login />
+          <Login />
         );
-
+        
         if (this.state.login === undefined) {
             jsx = (
                 <p>Loading...</p>
             );
-        }
-        else if (this.state.login) {
+        } else if (this.state.login) {
             jsx = (
                 <div>
                     <button onClick={this.logout}>Logout</button>
@@ -50,7 +48,6 @@ export default class Search extends Component {
                 </div>
             )
         }
-
         return jsx;
     }
 }
