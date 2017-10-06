@@ -1,59 +1,54 @@
 import React, { Component } from 'react';
 import client from '../../Feathers';
 import uuid from 'node-uuid';
+import SearchForm from './searchForm';
+import Login from './login';
+import './search.css';
 
 export default class Search extends Component {
     constructor() {
-        super();
-        this.state = {
-            results:    [],
-            searchTerm: ''
-        }
+       super();
+       this.state = {};
     }
 
-    handleInputChange = (event) => {
-        const target = event.target;
-        const value  = target.value;
-        const name   = target.id;
+    componentDidMount() {
+        client.authenticate()
+            .then(() => {
+                // TODO: do something?
+            })
+            .catch((err) => this.setState({login: null}));
 
-        this.setState({
-            [name]: value
+        client.on('authenticated', login => {
+            this.setState({ login });
         });
+        client.on('logout', () => this.setState({
+            login: null,
+            driveAccounts: null,
+        }));
     }
 
-    search = () => {
-        const donationOffer = client.service('donation-offer');
-
-        if (this.state.searchTerm.length) {
-            return donationOffer.find({query: {$search: this.state.searchTerm}})
-                .then((resultResponse) => this.setState({results: resultResponse.data}))
-                .catch(alert);
-        }
-        else {
-            return this.setState({results: []});
-        }
+    logout = (e) => {
+        e.preventDefault();
+        return client.logout();
     }
 
     render() {
-        let results = [(<p key={uuid.v4()}>No results.</p>)];
-        if (this.state.results.length) {
-            results = this.state.results.map((result) => {
-                let resultText = '';
-                Object.keys(result).forEach((key) => resultText += key + ': ' + result[key] + ' | ');
-                return (
-                    <p key={result.id}>{resultText}</p>
-                );
-            });
-        }
-
-        return (
-            <div>
-                <h1>Search Donation Offers</h1>
-                <input type="text" id="searchTerm" onChange={this.handleInputChange} />
-                <button onClick={this.search}>Search</button>
-                <hr />
-                {results}
-            </div>
+        let jsx = (
+          <Login />
         );
+        
+        if (this.state.login === undefined) {
+            jsx = (
+                <p>Loading...</p>
+            );
+        } else if (this.state.login) {
+            jsx = (
+                <div>
+                    <button onClick={this.logout}>Logout</button>
+                    <SearchForm {...this.props} />
+                </div>
+            )
+        }
+        return jsx;
     }
 }

@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
+import {
+  Grid,
+  Row,
+  Col
+} from 'react-bootstrap';
 
-export default class ThankYou extends Component {
+export default class subFooter extends Component {
   render() {
     return(
-      <div className='container-fluid'>
-        <div className='row'>
-          <div className='col-xs-12'>
-            <h1>Footer</h1>
-          </div>
-        </div>
-      </div>
+      <footer className='footer'>
+        <Grid>
+          <Row className="subFooter">
+            <Col xs={12} className="text-center">
+              <p>Powered by DonDB</p>
+            </Col>
+          </Row>
+        </Grid>
+      </footer>
     )
   }
 }

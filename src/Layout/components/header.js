@@ -1,30 +1,28 @@
 import React  from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Navbar, Nav, NavItem } from 'react-bootstrap'
+import branding from '../../brandingConfig';
 
 export default function Header() {
   return(
-    <Navbar collapseOnSelect>
-      <Navbar.Brand>
-        <Link to='/'>Home</Link>
-      </Navbar.Brand>
-      <Navbar.Toggle />
+    <Navbar staticTop>
+      <Navbar.Header>
+        <Navbar.Brand>
+            <Link to="/">{branding.logoUrl ? <img src={branding.logoUrl} alt="Home" />: 'Home'}</Link>
+        </Navbar.Brand>
+        <Navbar.Toggle />
+      </Navbar.Header>
       <Navbar.Collapse>
         <Nav bsStyle="pills">
-          <LinkContainer exact to='/donation-form'>
+          <LinkContainer to='/donation-form'>
             <NavItem eventKey={1}>
-              Donation form link
-            </NavItem>
-          </LinkContainer>
-          <LinkContainer exact to='/donation-form/thank-you'>
-            <NavItem eventKey={2}>
-              Thank You page link
+              Submit your donation
             </NavItem>
           </LinkContainer>
           <LinkContainer to='/search'>
-            <NavItem eventKey={3}>
-              Search page link
+            <NavItem eventKey={2}>
+              Search
             </NavItem>
           </LinkContainer>
         </Nav>
@@ -32,3 +30,5 @@ export default function Header() {
     </Navbar>
   );
 }
+
+export default withRouter(Header);

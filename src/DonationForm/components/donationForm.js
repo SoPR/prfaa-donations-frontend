@@ -1,10 +1,27 @@
 import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import {
+    Form,
+    Input,
+    Select,
+    Textarea
+} from 'formsy-react-components';
+import {
+    Grid,
+    Row,
+    Col,
+    Jumbotron,
+    Button,
+    ControlLabel
+} from 'react-bootstrap';
 import donationFormActions from '../actions/donationFormActions.js'
 import InputMask from '../../utils/inputMask.js'
 import Options from '../lib/options.js'
-import { Form, Input, Select, Textarea } from 'formsy-react-components';
-import { Grid, Jumbotron } from 'react-bootstrap'
 import '../style/donationForm.css';
+import '../style/donationForm.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import '../style/donationForm.css';
+import '../style/react-datepicker.css';
 
 export default class DonationForm extends Component {
     constructor() {
@@ -12,15 +29,18 @@ export default class DonationForm extends Component {
         this.state = {
             showTranportationOptions: false,
             invalidSubmit:            false,
-            submissionErrors:         []
-        };
-        this.phoneMask = new InputMask('(___) ___ - ____', '_');
-        this.zipCodeMask = new InputMask('_____', '_');
-        this.invalidSubmit = this.invalidSubmit.bind(this);
-        this.isValid = this.isValid.bind(this);
-        this.transportationNeededChanged = this.transportationNeededChanged.bind(this);
-        this.successfulSubmission = this.successfulSubmission.bind(this);
-        this.submissionError = this.submissionError.bind(this);
+            submissionErrors:         [],
+            expDate:                  null
+        }
+        this.phoneMask                   = new InputMask('(___) ___ - ____', '_')
+        this.zipCodeMask                 = new InputMask('_____', '_')
+        this.invalidSubmit               = this.invalidSubmit.bind(this)
+        this.isValid                     = this.isValid.bind(this)
+        this.transportationNeededChanged = this.transportationNeededChanged.bind(this)
+        this.successfulSubmission        = this.successfulSubmission.bind(this)
+        this.submissionError             = this.submissionError.bind(this)
+        this.handleValidSubmission       = this.handleValidSubmission.bind(this)
+        this.handleExpirationDateChange  = this.handleExpirationDateChange.bind(this)
     }
 
     componentDidMount() {
@@ -45,8 +65,11 @@ export default class DonationForm extends Component {
     handleValidSubmission(data) {
         data.phoneNumber = data.phoneNumber.match(/\d+/g).join('')
         data.zipCode     = data.zipCode.match(/\d+/g).join('')
-        alert(JSON.stringify(data));
-        console.log(data)
+
+        if (this.state.expDate) {
+            data.expDate = this.state.expDate.format("M-D-YYYY");
+        }
+
         donationFormActions.submitFormRequest(data)
     }
 
@@ -65,13 +88,20 @@ export default class DonationForm extends Component {
         this.setState({ showTranportationOptions: !this.state.showTranportationOptions })
     }
 
+    handleExpirationDateChange(value) {
+        this.setState({
+            expDate: value
+        });
+    }
+
     render() {
         return (
             <Grid>
                 <Jumbotron>
                     <div className="form-container">
                         <div className="text-header"> Donation Form</div>
-                        <Form onChange={this.validateForm} onValidSubmit={this.handleValidSubmission} onValid={this.isValid}
+                        <Form id="donation-form" onChange={this.validateForm} onValidSubmit={this.handleValidSubmission}
+                              onValid={this.isValid}
                               onInvalidSubmit={this.invalidSubmit}>
                             <Input
                                 name="fullname"
@@ -216,6 +246,21 @@ export default class DonationForm extends Component {
                                         elementWrapperClassName={[{'col-sm-9': false}, 'col-md-6 col-xs-12']}
                                     />
                             }
+                            <Row>
+                                <Col md={2} mdOffset={2} style={{textAlign: 'right'}}>
+                                    <ControlLabel>
+                                        Offer Expiration
+                                    </ControlLabel>
+                                </Col>
+                                <Col md={6} xs={12}>
+                                    <DatePicker
+                                        selected={this.state.expDate}
+                                        onChange={this.handleExpirationDateChange}
+                                        className="form-control"
+                                        placeholderText="MM\DD\YYYY"
+                                    />
+                                </Col>
+                            </Row>
                             <Textarea
                                 name="notes"
                                 label="Additional Notes"
@@ -226,18 +271,21 @@ export default class DonationForm extends Component {
                                 elementWrapperClassName={[{'col-sm-9': false}, 'col-md-6 col-xs-12']}
                             />
 
-                            <div className='has-error'>
-                                {this.state.submissionErrors.length > 0 &&
-                                <span className='help-block validation-message'>{this.state.submissionErrors.join('/n')}</span>}
-                            </div>
+                            <Row>
+                                <Col xs={12} mdOffset={3} md={6} className='has-error text-center'>
+                                    {this.state.submissionErrors.length > 0 &&
+                                    <span
+                                        className='help-block validation-message'>{this.state.submissionErrors.join('/n')}</span>}
+                                </Col>
+                            </Row>
 
-                            <div className="form-group row addMargin">
+                            <Row className="form-group addMargin">
                                 <div className="col-xs-12 text-center">
-                                    <button type="submit" className="btn btn-success col-xs-12 col-md-6 col-md-offset-3">
+                                    <Button className="col-xs-12 col-md-6 col-md-offset-3 btn-donate" type="submit" bsSize="large">
                                         Submit
-                                    </button>
+                                    </Button>
                                 </div>
-                            </div>
+                            </Row>
                         </Form>
                     </div>
                 </Jumbotron>

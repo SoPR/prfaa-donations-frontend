@@ -1,12 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {
+    Grid,
+    Row,
+    Jumbotron,
+} from 'react-bootstrap'
 
 export default function ThankYou() {
-    return (
-        <div>
-            <h1>Thank You Page Under Construction</h1>
-            <Link to='/'>Landing page link</Link>
-            <Link to='/donation-form'>Donation form link</Link>
-        </div>
-    );
+  return (
+      <Grid>
+        <Jumbotron>
+          <Row className='text-center'>
+            <p>Thank you for your submission. Please check your email for a confirmation.</p>
+          </Row>
+        </Jumbotron>
+      </Grid>
+   );
 }

@@ -2,10 +2,22 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import client from '../../Feathers';
+import {
+    Grid,
+    Jumbotron,
+    Row,
+    Col
+} from 'react-bootstrap';
+import {
+    FaCheck,
+    FaSpinner
+} from 'react-icons/lib/fa';
+import GoX from 'react-icons/lib/go/x'
+
 
 export default class Confirm extends Component {
-    constructor() {
-        super();
+    constructor(...args) {
+        super(...args);
         this.state = {
             confirmed: false,
             error:     false
@@ -24,36 +36,48 @@ export default class Confirm extends Component {
     }
 
     render() {
-        let jsx;
+        let jsx = null;
 
         if (!this.state.confirmed && !this.state.error) {
             jsx = (
                 <div>
-                    <h1>Confirming your Donation... (please wait)</h1>
+                    <h2>Confirming your Donation... (please wait)</h2>
+                    <div className="svg-spin fa"><FaSpinner className="fa-spin"/></div>
                 </div>
             );
         } else if (this.state.confirmed) {
             jsx = (
                 <div>
+                    <h1 className="green"><FaCheck /></h1>
                     <h1>Thank You for Confirming your Donation!</h1>
                     <p>
                         Your donation offer has been confirmed.<br />
                         A PRFAA agent will be in touch with you regarding your donation.<br />
                         Thank you again!
                     </p>
-                    <Link to='/'>Landing page link</Link>
+                    <Link className="btn btn-lg btn-donate" to='/'>Go Back to the Home Page</Link>
                 </div>
             );
         } else if (this.state.error) {
             jsx = (
                 <div>
+                    <div className="goX"><GoX/></div>
                     <h1>Sorry, we were unable to confirm your donation at this time.</h1>
                     <p>
-                        Please try again later or <Link to='/donation-offer'>resubmit your offer</Link>.
+                        Please try again later or <Link to='/donation-form'>resubmit your donation</Link>.
                     </p>
                 </div>
             );
         }
-        return jsx;
+        return (
+            <Grid fluid>
+                <Jumbotron>
+                    <Row>
+                        <Col xs={12} className="text-center">
+                            {jsx}
+                        </Col>
+                    </Row>
+                </Jumbotron>
+            </Grid>);
     }
 }
