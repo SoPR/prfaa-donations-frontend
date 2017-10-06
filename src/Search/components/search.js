@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import client from '../../Feathers';
+import uuid from 'node-uuid';
 
 export default class Search extends Component {
     constructor() {
@@ -34,7 +35,7 @@ export default class Search extends Component {
     }
 
     render() {
-        let results = [(<p>No results.</p>)];
+        let results = [(<p key={uuid.v4()}>No results.</p>)];
         if (this.state.results.length) {
             results = this.state.results.map((result) => {
                 let resultText = '';

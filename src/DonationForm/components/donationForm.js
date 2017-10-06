@@ -2,58 +2,44 @@ import React, { Component } from 'react';
 import donationFormActions from '../actions/donationFormActions.js'
 import InputMask from '../../utils/inputMask.js'
 import Options from '../lib/options.js'
-import {
-    Form,
-    Input,
-    Select,
-    Textarea
-} from 'formsy-react-components';
-
-import {
-    Grid,
-    Row,
-    Col,
-    Jumbotron
-} from 'react-bootstrap'
-
+import { Form, Input, Select, Textarea } from 'formsy-react-components';
+import { Grid, Jumbotron } from 'react-bootstrap'
 import '../style/donationForm.css';
-
 
 export default class DonationForm extends Component {
     constructor() {
-        super()
-        this.state                       = {
+        super();
+        this.state = {
             showTranportationOptions: false,
             invalidSubmit:            false,
             submissionErrors:         []
-        }
-        this.phoneMask                   = new InputMask('(___) ___ - ____', '_')
-        this.zipCodeMask                 = new InputMask('_____', '_')
-        this.invalidSubmit               = this.invalidSubmit.bind(this)
-        this.isValid                     = this.isValid.bind(this)
-        this.transportationNeededChanged = this.transportationNeededChanged.bind(this)
-        this.successfulSubmission        = this.successfulSubmission.bind(this)
-        this.submissionError             = this.submissionError.bind(this)
+        };
+        this.phoneMask = new InputMask('(___) ___ - ____', '_');
+        this.zipCodeMask = new InputMask('_____', '_');
+        this.invalidSubmit = this.invalidSubmit.bind(this);
+        this.isValid = this.isValid.bind(this);
+        this.transportationNeededChanged = this.transportationNeededChanged.bind(this);
+        this.successfulSubmission = this.successfulSubmission.bind(this);
+        this.submissionError = this.submissionError.bind(this);
     }
 
     componentDidMount() {
-        document.addEventListener('donationSubmitted', this.successfulSubmission)
-        document.addEventListener('submissionError', this.submissionError)
+        document.addEventListener('donationSubmitted', this.successfulSubmission);
+        document.addEventListener('submissionError', this.submissionError);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('donationSubmitted', this.successfulSubmission)
-        document.removeEventListener('submissionError', this.submissionError)
+        document.removeEventListener('donationSubmitted', this.successfulSubmission);
+        document.removeEventListener('submissionError', this.submissionError);
     }
 
     successfulSubmission() {
-        this.props.history.push('/donation-form/thank-you')
+        this.props.history.push('/donation-form/thank-you');
     }
 
     submissionError() {
-        let errorArray = this.state.submissionErrors
-        errorArray.push('There was an error processing your request.')
-        this.setState({submissionErrors: errorArray})
+        const submissionErrors = [...this.state.submissionErrors, 'There was an error processing your request.'];
+        this.setState({ submissionErrors });
     }
 
     handleValidSubmission(data) {
@@ -65,20 +51,18 @@ export default class DonationForm extends Component {
     }
 
     invalidSubmit() {
-        let errorArray = this.state.submissionErrors
-        errorArray.push('Please fix the errors above.')
-        this.setState({submissionErrors: errorArray})
+        const submissionErrors = [...this.state.submissionErrors , 'Please fix the errors above.'];
+        this.setState({ submissionErrors });
     }
 
     isValid() {
-        let errorArray = this.state.submissionErrors
-        let errorIndex = this.state.submissionErrors.indexOf('Please fix the errors above.')
-        errorArray.splice(errorIndex, 1)
-        this.setState({submissionErrors: errorArray})
+        const errorIndex = this.state.submissionErrors.indexOf('Please fix the errors above.');
+        const submissionErrors = this.state.submissionErrors.slice(errorIndex, 1);
+        this.setState({ submissionErrors })
     }
 
     transportationNeededChanged() {
-        this.setState({showTranportationOptions: !this.state.showTranportationOptions})
+        this.setState({ showTranportationOptions: !this.state.showTranportationOptions })
     }
 
     render() {
@@ -203,7 +187,7 @@ export default class DonationForm extends Component {
                                 name="transportationNeed"
                                 label="Do you need transportation of goods?"
                                 options={Options.needsTransportationOptions}
-                                value={false}
+                                value='false'
                                 onChange={this.transportationNeededChanged}
                                 required
                                 rowClassName="addMargin"

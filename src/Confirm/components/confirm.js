@@ -9,17 +9,17 @@ export default class Confirm extends Component {
         this.state = {
             confirmed: false,
             error:     false
-        }
+        };
     }
 
     componentDidMount() {
         const confirmService = client.service('confirm');
-        const qs             = queryString.parse(this.props.location.search);
+        const qs = queryString.parse(this.props.location.search);
 
         if (qs.id) {
             confirmService.get(qs.id)
-                .then(() => this.setState({confirmed: true}))
-                .catch((err) => this.setState({error: err}));
+              .then(() => this.setState({confirmed: true}))
+              .catch((err) => this.setState({error: err}));
         }
     }
 
@@ -32,8 +32,7 @@ export default class Confirm extends Component {
                     <h1>Confirming your Donation... (please wait)</h1>
                 </div>
             );
-        }
-        else if (this.state.confirmed) {
+        } else if (this.state.confirmed) {
             jsx = (
                 <div>
                     <h1>Thank You for Confirming your Donation!</h1>
@@ -45,8 +44,7 @@ export default class Confirm extends Component {
                     <Link to='/'>Landing page link</Link>
                 </div>
             );
-        }
-        else if (this.state.error) {
+        } else if (this.state.error) {
             jsx = (
                 <div>
                     <h1>Sorry, we were unable to confirm your donation at this time.</h1>
@@ -56,7 +54,6 @@ export default class Confirm extends Component {
                 </div>
             );
         }
-
         return jsx;
     }
 }
