@@ -7,10 +7,10 @@ export default function Layout({ children }) {
   return (
     <div className='layout'>
       <div className='full-height'>
-        <Header/>
+        { Header() }
         { children }
       </div>
-      <Footer/>
+      { Footer() }
     </div>
   );
 }
