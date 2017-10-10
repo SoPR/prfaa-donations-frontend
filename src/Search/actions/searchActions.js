@@ -9,17 +9,17 @@ const acceptDonation = (data) => {
     if (data.id && data.acceptedBy) {
         return donationOfferService.patch(data.id, data)
             .then((res) => {
-                document.dispatchEvent(donationAccepted)
+                document.dispatchEvent(donationAccepted);
             })
             .catch((err) => {
-                document.dispatchEvent(donationAcceptFailed)
+                document.dispatchEvent(donationAcceptFailed);
             });
     }
     else {
         return document.dispatchEvent(donationAcceptFailed);
     }
-}
+};
 
 export default {
     acceptDonation
-}
+};

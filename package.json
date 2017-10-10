@@ -11,6 +11,7 @@
     "feathers-socketio": "^2.0.0",
     "formsy-react": "^1.0.0",
     "formsy-react-components": "^1.0.0-alpha.5",
+    "jest-cli": "^21.2.1",
     "localstorage-memory": "^1.0.2",
     "query-string": "^5.0.0",
     "react": "^15.6.1",
@@ -28,6 +29,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "test-ci": "CI=true react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "eslint": "eslint src/. --config .eslintrc.json"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.8.0",
+    "pre-commit": "^1.2.2",
+    "pre-push": "^0.1.1"
+  },
+  "pre-push": [
+    "test-ci"
+  ],
+  "pre-commit": [
+    "eslint"
+  ]
 }

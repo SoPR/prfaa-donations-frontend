@@ -1,3 +1,3 @@
 export default {
-  logoUrl: null,
+    logoUrl: null,
 };
