@@ -1,3 +1,7 @@
+Note: This repository is archived and not being used or maintained.
+
+----
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Users Bootstrap 3 and React-Bootstrap for responsive layouts
